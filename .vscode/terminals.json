@@ -1,0 +1,28 @@
+{
+	"autorun": true,
+	"autokill": true,
+	"terminals": [
+		{
+			"name": "Node.js terminal",
+			"description": "",
+			"icon": "code",
+			"cwd": "~/src/streaming/back/",
+			"command": "npm run dev",
+			"recycle": false,
+			"open": true,
+			"focus": false,
+			"shellPath": "/bin/zsh"
+		},
+		{
+			"name": "Angular terminal",
+			"description": "",
+			"icon": "code",
+			"cwd": "~/src/streaming/front/",
+			"command": "ng serve",
+			"recycle": false,
+			"open": true,
+			"focus": true,
+			"shellPath": "/bin/zsh"
+		}
+	]
+}

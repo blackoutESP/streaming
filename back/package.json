@@ -1,0 +1,28 @@
+{
+  "name": "streaming",
+  "version": "0.0.1",
+  "description": "Small Streaming Service",
+  "main": "index.js",
+  "scripts": {
+    "start": "",
+    "dev": "nodemon ./index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "streaming"
+  ],
+  "author": "Alex Algar",
+  "license": "ISC",
+  "dependencies": {
+    "bunyan": "^1.8.12",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "formidable": "^1.2.2",
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security",
+    "http-errors": "^1.7.3",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^2.0.2",
+    "path": "^0.12.7"
+  }
+}

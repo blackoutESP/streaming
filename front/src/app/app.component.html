@@ -1,0 +1,54 @@
+<div class="container">
+  <mat-toolbar>
+    <div class="logo">
+      <span><i class="fad fa-2x fa-signal-stream"></i></span>&nbsp;&nbsp;
+      <span>{{ title }}</span>
+    </div>
+  </mat-toolbar>
+
+
+  <mat-sidenav-container>
+    <mat-sidenav-content>
+      <mat-expansion-panel *ngIf="videos" [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3>Songs</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item *ngFor="let video of videos; let i = index"><a (click)="setUrl(video)" id="video">{{ video }}</a></mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+
+      <mat-divider></mat-divider>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3>File Uploads</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="upload">
+          <form>
+            <label for="upload" class="browse">
+              Browse...
+              <button type="submit">
+                <!-- <i class="far fa-2x fa-cloud-upload-alt"></i> -->
+                <i class="fad fa-2x fa-sync"></i>
+              </button>
+            </label>
+            <input type="file" id="upload" enctype="multipart/form-data" (change)="handleUpload($event)">
+          </form>
+        </div>
+        <span #result></span>
+      </mat-expansion-panel>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+
+  <mat-grid-list cols="1">
+    <video controls #player>
+      <source #source type="video/mp4" />
+    </video>
+  </mat-grid-list>
+</div>
