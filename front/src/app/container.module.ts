@@ -20,7 +20,7 @@ import { Container } from './container.component';
     MaterialUIModule
   ],
   providers: [],
-  bootstrap: [ContainerRoutingModule],
+  bootstrap: [Container],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
 })

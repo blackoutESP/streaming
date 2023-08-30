@@ -1,7 +1,7 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { ContainerRoutingModule } from './app/container-routing.module';
+import { ContainerModule } from './app/container.module';
 
 
-platformBrowserDynamic().bootstrapModule(ContainerRoutingModule)
+platformBrowserDynamic().bootstrapModule(ContainerModule)
   .catch(err => console.error(err));
