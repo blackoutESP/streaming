@@ -1,11 +1,10 @@
-<div class="container">
-  <!-- Toolbar -->
-  <div class="toolbar">
-    <div class="menu">
-      <div class="sss">Small Streaming Service</div>
-      <div class="login">User</div>
-    </div>
-  </div>
-
-</div>
+<!-- [ngClass]="{'dark-theme': themeSelected === 'dark', 'light-theme': themeSelected === 'light'}" -->
+<mat-menu class="menu" #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>color_lens</mat-icon>
+    <mat-slide-toggle (click)="$event.stopPropagation()" (change)="onThemeSwitch($event)">
+      slider
+    </mat-slide-toggle>
+  </button>
+</mat-menu>
 

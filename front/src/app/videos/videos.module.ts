@@ -1,19 +1,18 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContainerRoutingModule } from '../container-routing.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
 import { VideosComponent } from './videos.component';
-import { RouterOutlet } from '@angular/router';
+// import { RouterOutlet } from '@angular/router';
+import { MaterialUIModule } from '../angular-material-ui.module';
 
 @NgModule({
   declarations: [VideosComponent],
   imports: [
-    // CommonModule,
-    // BrowserModule,
+    CommonModule,
     ContainerRoutingModule,
-    // BrowserAnimationsModule,
+    MaterialUIModule
   ],
-  providers: []
+  providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class VideosModule { }
