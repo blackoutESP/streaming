@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './container.component.html',
   styleUrls: ['./container.theme.scss']
 })
-export class Container implements OnInit, OnDestroy {
+export class Container {
 
   public title = 'Small Streaming Service';
   private user: object = {};
@@ -19,21 +19,12 @@ export class Container implements OnInit, OnDestroy {
   private $handler: BehaviorSubject<any>;
   private $destroyed: BehaviorSubject<boolean>;
 
-  private constructor(private router: Router) {
-  this.$handler  = new BehaviorSubject(this.handlerInfo);
-  this.$destroyed = new BehaviorSubject(false);
+  constructor(private router: Router) {
+    this.$handler  = new BehaviorSubject(this.handlerInfo);
+    this.$destroyed = new BehaviorSubject(false);
   }
 
   ngOnInit(): void {
-
+    this.router.navigate(['videos/all'], { skipLocationChange: false });
   }
-
-  ngOnDestroy(): void {
-
-  }
-
-  handleLogin(): void {
-
-  }
-
 }
