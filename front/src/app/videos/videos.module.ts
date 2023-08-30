@@ -4,9 +4,7 @@ import { ContainerRoutingModule } from '../container-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { VideosComponent } from './videos.component';
-import { Route, RouterOutlet } from '@angular/router';
-
-
+import { RouterOutlet } from '@angular/router';
 
 @NgModule({
   declarations: [VideosComponent],

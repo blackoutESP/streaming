@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { } from './videos/videos.component';
 
 const routes: Routes = [
   { path: 'videos/all', loadChildren: () => import('./videos/videos.module').then(m => m.VideosModule)  },
@@ -8,7 +8,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), BrowserModule],
   exports: [RouterModule]
 })
 export class ContainerRoutingModule { }

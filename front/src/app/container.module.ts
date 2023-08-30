@@ -9,17 +9,18 @@ import { Container } from './container.component';
 
 @NgModule({
   declarations: [
+    Container
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule,
     RouterOutlet,
     ContainerRoutingModule,
-    BrowserAnimationsModule,
     MaterialUIModule
   ],
   providers: [],
-  bootstrap: [ContainerModule],
+  bootstrap: [ContainerRoutingModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
 })
