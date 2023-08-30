@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
-  selector: 'container',
+  selector: 'app-root',
   templateUrl: './container.component.html',
   styleUrls: ['./container.theme.scss']
 })

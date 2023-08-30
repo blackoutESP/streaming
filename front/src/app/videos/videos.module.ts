@@ -9,10 +9,10 @@ import { RouterOutlet } from '@angular/router';
 @NgModule({
   declarations: [VideosComponent],
   imports: [
-    BrowserModule,
+    // CommonModule,
+    // BrowserModule,
     ContainerRoutingModule,
-    BrowserAnimationsModule,
-    RouterOutlet
+    // BrowserAnimationsModule,
   ],
   providers: []
 })

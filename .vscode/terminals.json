@@ -8,7 +8,7 @@
 			"icon": "code",
 			"cwd": "~/src/streaming/back/",
 			"command": "npm run dev",
-			"recycle": false,
+			"recycle": true,
 			"open": true,
 			"focus": false,
 			"shellPath": "/bin/zsh"
@@ -19,7 +19,7 @@
 			"icon": "code",
 			"cwd": "~/src/streaming/front/",
 			"command": "ng serve",
-			"recycle": false,
+			"recycle": true,
 			"open": true,
 			"focus": true,
 			"shellPath": "/bin/zsh"
