@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-videos',
+  selector: 'videos',
   templateUrl: './videos.component.html',
   styleUrls: ['./videos.component.css']
 })
