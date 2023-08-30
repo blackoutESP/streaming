@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ContainerRoutingModule } from './container-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialUIModule } from './angular-material-ui.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     RouterModule,
     ContainerRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialUIModule
   ],
   providers: [],
   bootstrap: [ContainerModule],
