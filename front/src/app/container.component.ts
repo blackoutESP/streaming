@@ -1,6 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +8,5 @@ import { BehaviorSubject } from 'rxjs';
 export class Container {
 
   public title = 'Small Streaming Service';
-
-  constructor(private router: Router) {
-
-  }
-
-  ngOnInit(): void {
-    this.router.navigate(['videos/all'], { skipLocationChange: false });
-  }
+  public version = '2.0-1';
 }

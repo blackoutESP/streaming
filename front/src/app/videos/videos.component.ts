@@ -2,8 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Themes } from '../interfaces/theme-selected.enum';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'videos',
@@ -12,7 +10,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 })
 export class VideosComponent implements OnInit, OnDestroy {
   public title = 'Small Streaming Service';
-  public themeSelected: string = Themes.LightTheme;
+  public themeSelected: string = Themes.DarkTheme;
   private user: object = {};
   private handlerInfo: object = {
     ok: Boolean,
@@ -22,7 +20,7 @@ export class VideosComponent implements OnInit, OnDestroy {
   private $handler: BehaviorSubject<any>;
   private $destroyed: BehaviorSubject<boolean>;
 
-  constructor(private router: Router) {
+  constructor() {
     this.$handler  = new BehaviorSubject(this.handlerInfo);
     this.$destroyed = new BehaviorSubject(false);
   }

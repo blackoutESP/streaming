@@ -1,15 +1,15 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ContainerRoutingModule } from '../container-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+
+import { MaterialUIModule } from './angular-material-ui.module';
+
 import { VideosComponent } from './videos.component';
-// import { RouterOutlet } from '@angular/router';
-import { MaterialUIModule } from '../angular-material-ui.module';
 
 @NgModule({
-  declarations: [VideosComponent],
+  declarations: [
+    VideosComponent
+  ],
   imports: [
-    CommonModule,
-    ContainerRoutingModule,
     MaterialUIModule
   ],
   providers: [],

@@ -23,8 +23,7 @@ import { CommonModule } from '@angular/common';
     MaterialUIModule
   ],
   providers: [],
-  bootstrap: [Container],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  bootstrap: [Container]
 
 })
 export class ContainerModule { }
