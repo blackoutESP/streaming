@@ -4,9 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { ContainerRoutingModule } from './container-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialUIModule } from './angular-material-ui.module';
+
 import { Container } from './container.component';
 import { CommonModule } from '@angular/common';
+import { AngularMaterialModule } from './angular-material-ui.module';
 
 @NgModule({
   declarations: [
@@ -20,10 +21,9 @@ import { CommonModule } from '@angular/common';
     RouterModule,
     RouterOutlet,
     ContainerRoutingModule,
-    MaterialUIModule
+    AngularMaterialModule,
   ],
   providers: [],
-  bootstrap: [Container]
-
+  bootstrap: [Container],
 })
 export class ContainerModule { }
