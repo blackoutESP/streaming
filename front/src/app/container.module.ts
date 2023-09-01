@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { ContainerRoutingModule } from './container-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -18,12 +18,12 @@ import { AngularMaterialModule } from './angular-material-ui.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule,
     RouterOutlet,
     ContainerRoutingModule,
     AngularMaterialModule,
   ],
   providers: [],
   bootstrap: [Container],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ContainerModule { }

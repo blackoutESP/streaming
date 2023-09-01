@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './container.component.html',
   styleUrls: ['./container.theme.scss']
 })
-export class Container {
+export class Container implements OnInit {
 
   public title = 'Small Streaming Service';
   public version = '2.0-1';
@@ -16,6 +16,6 @@ export class Container {
   }
 
   ngOnInit(): void {
-
+    this.router.navigate(['videos/all'], { skipLocationChange: true });
   }
 }
