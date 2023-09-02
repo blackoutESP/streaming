@@ -9,13 +9,13 @@ import { Router } from '@angular/router';
 export class Container implements OnInit {
 
   public title = 'Small Streaming Service';
-  public version = '2.0-1';
+  public version = '2.0';
 
   constructor(private router: Router) {
 
   }
 
   ngOnInit(): void {
-    this.router.navigate(['videos/all'], { skipLocationChange: false });
+    // this.router.navigate(['videos/all'], { skipLocationChange: false });
   }
 }
