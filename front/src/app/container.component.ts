@@ -16,6 +16,6 @@ export class Container implements OnInit {
   }
 
   ngOnInit(): void {
-    this.router.navigate(['videos/all'], { skipLocationChange: true });
+    this.router.navigate(['videos/all'], { skipLocationChange: false });
   }
 }

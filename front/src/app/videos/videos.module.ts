@@ -11,6 +11,7 @@ import { AngularMaterialModule } from '../angular-material-ui.module';
   imports: [
     AngularMaterialModule
   ],
-  providers: [AngularMaterialModule]
+  providers: [AngularMaterialModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class VideosModule { }
