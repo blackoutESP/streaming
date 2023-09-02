@@ -21,7 +21,7 @@ export class Container implements OnInit {
   }
 
   switchTheme(event: any): void {
-    this.themeSelected.next('light');
-    this.themeSelected.complete();
+    this.themeSelected.next('dark');
+
   }
 }
