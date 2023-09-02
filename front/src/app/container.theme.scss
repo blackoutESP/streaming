@@ -1,4 +1,9 @@
-
+.inline {
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: 20%;
+  grid-template-areas: "icon title";
+}
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
@@ -7,10 +12,29 @@
   'opsz' 24;
   font-size: 2em;
   line-height: 2em;
-  width: 90%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  grid-area: icon;
 }
 
+.title {
+  font-size: 2em;
+  line-height: 2em;
+  display: flex;
+  flex-direction: row;
+  grid-area: title;
+}
 
+.divider {
+  width: 4em;
+  margin-left: 2em;
+  margin-right: 2em;
+  border: 0;
+}
+
+.menu {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-end;
+}

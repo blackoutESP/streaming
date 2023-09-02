@@ -1,16 +1,14 @@
 
 <mat-toolbar>
-  <div class="material-symbols-outlined">Cast</div>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <h3>Your Streaming Service</h3>
-  <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button>
+  <div class="inline">
+    <div class="material-symbols-outlined">Cast</div>
+    <h3 class="title">Streaming Service</h3>
+  </div>
+  <mat-divider class="divider"></mat-divider>
+  <button mat-button [matMenuTriggerFor]="menu" class="menu">Menu</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>All Films and Series</button>
+    <button mat-menu-item>Settings...</button>
+  </mat-menu>
 </mat-toolbar>
 <router-outlet></router-outlet>
