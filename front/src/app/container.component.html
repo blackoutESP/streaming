@@ -1,14 +1,17 @@
-
 <mat-toolbar>
   <div class="inline">
     <div class="material-symbols-outlined">Cast</div>
     <h3 class="title">Streaming Service</h3>
   </div>
-  <mat-divider class="divider"></mat-divider>
+  <mat-divider class="divider">|</mat-divider>
+  <mat-divider class="divider">|</mat-divider>
+  <mat-divider class="divider">|</mat-divider>
   <button mat-button [matMenuTriggerFor]="menu" class="menu">Menu</button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>All Films and Series</button>
-    <button mat-menu-item>Settings...</button>
+    <button mat-menu-item>Films</button>
+    <button mat-button (click)="switchTheme($event)">
+      <mat-slide-toggle (toggleChange)="themeSelected">{{ themeSelected | async }}</mat-slide-toggle>
+    </button>
   </mat-menu>
 </mat-toolbar>
 <router-outlet></router-outlet>

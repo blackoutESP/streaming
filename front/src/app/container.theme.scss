@@ -1,3 +1,4 @@
+
 .inline {
   display: grid;
   grid-template-rows: 100%;
@@ -26,15 +27,16 @@
 }
 
 .divider {
-  width: 4em;
-  margin-left: 2em;
-  margin-right: 2em;
+  width: 1em;
+  margin-left: 0.3em;
+  margin-right: 0.3;
   border: 0;
 }
 
 .menu {
   display: flex;
-  width: 100%;
+  width: auto;
   flex-direction: row;
   justify-content: flex-end;
+  overflow: hidden;
 }
