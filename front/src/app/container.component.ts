@@ -12,6 +12,7 @@ export class Container implements OnInit {
   public title = 'Small Streaming Service';
   public version = '2.0';
   @Output() themeSelected: BehaviorSubject<string> = new BehaviorSubject('dark');
+  @Output() checked: boolean = false;
 
   constructor(private router: Router) {
   }
@@ -21,7 +22,6 @@ export class Container implements OnInit {
   }
 
   switchTheme(event: any): void {
-    this.themeSelected.next('dark');
-
+    console.log(event.checked);
   }
 }
