@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=dev DEBUG=* nodemon ./index",
-    "dev": "npm start",
+    "dev": "yarn start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -15,7 +15,6 @@
   "license": "ISC",
   "dependencies": {
     "bunyan": "^1.8.12",
-    "cors": "^2.8.5",
     "express": "^4.17.1",
     "formidable": "1.2.2",
     "fs": "0.0.1-security",

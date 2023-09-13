@@ -6,7 +6,7 @@ const uploadsMiddleware = require('../middlewares/upload');
 
 router.get('/videos', videosMiddleware.getVideos);
 
-router.get('/video/:id', videosMiddleware.getVideoById);
+router.get('/videos/:id', videosMiddleware.getVideoById);
 
 router.post('/upload', uploadsMiddleware.uploadVideo);
 

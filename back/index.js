@@ -2,7 +2,6 @@ const config        = require('./config');
 const express       = require('express');
 const http          = require('http');
 const createError   = require('http-errors');
-const cors          = require('cors');
 const jwt           = require('jsonwebtoken');
 const logger        = require('./logger/logger');
 
@@ -13,11 +12,18 @@ const indexRouter   = require('./routes/index');
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-app.use(cors({
-    origin: 'http://localhost:4200'
-}));
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:4200"); // update to match the domain you will make the request from
+    res.header("Vary", "Origin");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Methods", "GET, POST, HEAD");
+    // Access-Control-Expose-Headers
+    // Access-Control-Max-Age
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
-const authMiddleware = async(request, response, next)=>{
+const authMiddleware = async(request, _, next) => {
     if(request.headers.authorization || request.query.authorization){
         let bearer = request.headers.authorization || request.query.authorization;
         let token = bearer.split(' ')[1];
@@ -40,7 +46,8 @@ app.use('/api/login', jwtAuth);
 app.use('/api', authMiddleware, indexRouter);
 
 app.use((request, response, next)=>{
-    next(createError(404));
+    response.json({ok: false, data: [], errors: [].push(response.errored)});
+    next(createError(response.errored));
 });
 
 http.createServer(app).listen(config.http.port, ()=>{
