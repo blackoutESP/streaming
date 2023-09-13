@@ -45,8 +45,8 @@ const authMiddleware = async(request, _, next) => {
 app.use('/api/login', jwtAuth);
 app.use('/api', authMiddleware, indexRouter);
 
-app.use((request, response, next)=>{
-    response.json({ok: false, data: [], errors: [].push(response.errored)});
+app.use((_, response, next, error)=>{
+    response.json({ok: false, data: [], error: error});
     next(createError(response.errored));
 });
 
