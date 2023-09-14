@@ -27,7 +27,7 @@ const authMiddleware = async(request, _, next) => {
     if(request.headers.authorization || request.query.authorization){
         let bearer = request.headers.authorization || request.query.authorization;
         let token = bearer.split(' ')[1];
-        jwt.verify(token, config.jwt.api_key, (error, decoded)=>{
+        jwt.verify(token, process.env.api_key, (error, decoded)=>{
             if(error){
                 console.error(error);
                 logger.error({error: 'Unauthorized access'});
@@ -45,11 +45,10 @@ const authMiddleware = async(request, _, next) => {
 app.use('/api/login', jwtAuth);
 app.use('/api', authMiddleware, indexRouter);
 
-app.use((_, response, next, error)=>{
-    response.json({ok: false, data: [], error: error});
-    next(createError(response.errored));
-});
+// app.use((_, response, next, error)=> {
+//     next(createError(response.errored));
+// });
 
-http.createServer(app).listen(config.http.port, ()=>{
+http.createServer(app).listen(process.env.port, ()=>{
     console.log('server listening on port *:3000');
 });
