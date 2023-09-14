@@ -1,7 +1,7 @@
 back/node_modules
 back/assets
 front/node_modules
-.DS_Store
+
 .env*
 .flaskenv*
 !.env.project
