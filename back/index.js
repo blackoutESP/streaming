@@ -6,7 +6,7 @@ const jwt           = require('jsonwebtoken');
 const logger        = require('./logger/logger');
 
 require('dotenv').config()
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 const app           = express();
 const jwtAuth       = require('./middlewares/jwt');
@@ -48,10 +48,11 @@ const authMiddleware = async(request, _, next) => {
 app.use('/api/login', jwtAuth);
 app.use('/api', authMiddleware, indexRouter); // authMiddleware, TODO: fix middleware function
 
-app.use((_, response, next, error)=> {
+app.use((_, response, next)=> {
+    console.log(error);
     next(createError(500));
 });
 
-http.createServer(app).listen(process.env.PORT, ()=>{
-    console.log('server listening on port:', process.env.PORT);
+http.createServer(app).listen(3000, (req, res, _)=>{
+    console.log('server listening on port:', 3000);
 });
