@@ -13,7 +13,7 @@ const generateUUID = ()=>{
 };
 
 const generateToken = async(request, response, next)=>{
-    let token = jwt.sign({ key: generateUUID() }, config.jwt.api_key, { algorithm: 'HS512' }, (error, token)=>{
+    let token = jwt.sign({ key: generateUUID() }, process.env.API_KEY, { algorithm: 'HS512' }, (error, token)=>{
         if(error){
             console.error(error);
             createError(error);
