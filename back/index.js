@@ -48,9 +48,9 @@ const authMiddleware = async(request, _, next) => {
 app.use('/api/login', jwtAuth);
 app.use('/api', authMiddleware, indexRouter); // authMiddleware, TODO: fix middleware function
 
-// app.use((_, response, next, error)=> {
-//     next(createError(response.errored));
-// });
+app.use((_, response, next, error)=> {
+    next(createError(500));
+});
 
 http.createServer(app).listen(process.env.PORT, ()=>{
     console.log('server listening on port:', process.env.PORT);
