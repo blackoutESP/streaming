@@ -1,0 +1,46 @@
+
+.inline {
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: 20%;
+  grid-template-areas: "icon title";
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  font-size: 2em;
+  line-height: 2em;
+  display: flex;
+  flex-direction: row;
+  grid-area: icon;
+}
+
+.title {
+  font-size: 2em;
+  line-height: 2em;
+  display: flex;
+  flex-direction: row;
+  grid-area: title;
+}
+
+.inline {
+  margin: 2em;
+  padding: 1em;
+}
+
+.inlineFlex {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.menu {
+  display: flex;
+  width: auto;
+  flex-direction: row;
+  justify-content: flex-end;
+  overflow: hidden;
+}

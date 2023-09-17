@@ -1,0 +1,8 @@
+{
+    "http": {
+        "port": 3000
+    },
+    "jwt": {       
+        "api_key": "b6dt1g9n-bdl6-4kj9khv0-uoopg-vov507it"
+    }
+}
