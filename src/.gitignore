@@ -1,0 +1,7 @@
+assets/*
+node_modules
+logs
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
