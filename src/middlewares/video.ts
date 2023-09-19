@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import fs from 'fs';
-import path from 'path';
+import path from '../../../src/node_modules/path/path';
 
 export const getVideos = (request: Request, response: Response, next: NextFunction) => {
     fs.readdir(path.join(__dirname, '../assets'), { encoding: 'utf-8' }, (error, files) => {

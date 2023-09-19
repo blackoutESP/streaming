@@ -1,5 +1,5 @@
-import { getVideos, getVideoById } from '../middlewares/video.js';
-import { uploadVideo } from '../middlewares/upload.js';
+import { getVideos, getVideoById } from '../../.old/src/middlewares/video.js';
+import { uploadVideo } from '../../.old/src/middlewares/upload.js';
 import { Router } from 'express';
 
 const router = Router();

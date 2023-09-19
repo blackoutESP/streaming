@@ -2,8 +2,8 @@ import express, { NextFunction, Request, Response } from 'express';
 import http from 'http';
 import jwt from 'jsonwebtoken';
 // import { logger } from './logger/logger.js';
-import { router } from './routes/index.js';
-import { generateToken } from './middlewares/jwt.js';
+// import { router } from '../.old/src/routes/index.js';
+// import { generateToken } from '../.old/src/middlewares/jwt.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -44,8 +44,8 @@ export const authMiddleware = async (request: Request, response: Response, next:
     }
 };
 
-app.use('/api/login', generateToken);
-app.use('/api/videos', router);
+// app.use('/api/login', generateToken);
+// app.use('/api/videos', router);
 
 http.createServer(app).listen(process.env.port, () => {
     console.log('server listening on port:', 3000);

@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.router = void 0;
+const video_js_1 = require("../../.old/src/middlewares/video.js");
+const upload_js_1 = require("../../.old/src/middlewares/upload.js");
+const express_1 = require("express");
+const router = (0, express_1.Router)();
+exports.router = router;
+router.get('/', video_js_1.getVideos);
+router.get('/:id', video_js_1.getVideoById);
+router.post('/upload', upload_js_1.uploadVideo);

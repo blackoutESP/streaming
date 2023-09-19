@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
-var video_js_1 = require("../middlewares/video.js");
-var upload_js_1 = require("../middlewares/upload.js");
+var video_js_1 = require("../../.old/src/middlewares/video.js");
+var upload_js_1 = require("../../.old/src/middlewares/upload.js");
 var express_1 = require("express");
 var router = (0, express_1.Router)();
 exports.router = router;

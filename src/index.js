@@ -36,29 +36,56 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateToken = void 0;
+exports.authMiddleware = void 0;
+var express_1 = require("express");
+var http_1 = require("http");
 var jsonwebtoken_1 = require("jsonwebtoken");
-var generateUUID = function () {
-    var date = new Date().getTime();
-    var uuid = 'xxxxxxxx-yxxx-4xxxxxxx-xxxxx-xxxxxxxx'.replace(/[xy]/g, function (u) {
-        var reg = (date + Math.random() * 32) % 32 | 0;
-        date = Math.floor(date / 32);
-        return (u === 'x' ? reg : (reg & 0x3 | 0x8)).toString(32);
-    });
-    return uuid;
-};
-var generateToken = function (request, response, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var secret;
+// import { logger } from './logger/logger.js';
+// import { router } from '../.old/src/routes/index.js';
+// import { generateToken } from '../.old/src/middlewares/jwt.js';
+var dotenv_1 = require("dotenv");
+dotenv_1.default.config();
+var app = (0, express_1.default)();
+app.use(express_1.default.json());
+app.use(express_1.default.urlencoded({ extended: false }));
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Vary", "Origin");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Methods", "GET, POST, HEAD");
+    // Access-Control-Expose-Headers
+    // Access-Control-Max-Age
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+});
+var authMiddleware = function (request, response, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var bearer, secret;
     return __generator(this, function (_a) {
-        secret = process.env.api_key || '';
-        jsonwebtoken_1.default.sign({ key: generateUUID() }, secret, { algorithm: 'HS512' }, function (error, token) {
-            if (error) {
-                console.error(error);
-                return next(error);
-            }
-            return response.status(200).json({ ok: true, data: token, errors: [] });
-        });
+        if (request.headers.authorization || request.query.authorization) {
+            bearer = request.headers.authorization || request.query.authorization;
+            // const token = bearer?.slice(bearer.lastIndexOf(' '));
+            console.log(bearer);
+            secret = process.env.api_key || '';
+            next();
+            jsonwebtoken_1.default.verify('', secret, function (error, decoded) {
+                if (error) {
+                    console.error(error);
+                    //logger.error({ error: 'Unauthorized access', status: 403, message: 'Forbidden access.' });
+                    next(403);
+                }
+                // console.log(decoded);
+                //logger.info({ error: 'Authorized access', status: 200, message: 'Authorized access.' });
+                next();
+            });
+        }
+        else {
+            next();
+        }
         return [2 /*return*/];
     });
 }); };
-exports.generateToken = generateToken;
+exports.authMiddleware = authMiddleware;
+// app.use('/api/login', generateToken);
+// app.use('/api/videos', router);
+http_1.default.createServer(app).listen(process.env.port, function () {
+    console.log('server listening on port:', 3000);
+});

@@ -1,10 +1,14 @@
-import fs from 'fs';
-import path from 'path';
-import formidable from 'formidable';
-import { Request, Response, NextFunction } from 'express';
-
-export const uploadVideo = (request: Request, response: Response, next: NextFunction) => {
-    const data = new formidable.IncomingForm();
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.uploadVideo = void 0;
+const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("../../../src/node_modules/path/path"));
+const formidable_1 = __importDefault(require("formidable"));
+const uploadVideo = (request, response, next) => {
+    const data = new formidable_1.default.IncomingForm();
     /*
         data.on('file', async(error, fields, file)=>{
             console.log(file);
@@ -20,7 +24,7 @@ export const uploadVideo = (request: Request, response: Response, next: NextFunc
     });
     data.parse(request, (err, fields, files) => {
         //console.log(files.test);
-        fs.rename(JSON.stringify(files), path.join(__dirname, '../assets/', JSON.stringify(files)), (error) => {
+        fs_1.default.rename(JSON.stringify(files), path_1.default.join(__dirname, '../assets/', JSON.stringify(files)), (error) => {
             if (error) {
                 console.error(error);
                 next();
@@ -30,3 +34,4 @@ export const uploadVideo = (request: Request, response: Response, next: NextFunc
         });
     });
 };
+exports.uploadVideo = uploadVideo;
