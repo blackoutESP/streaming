@@ -1,7 +1,7 @@
 import express, { NextFunction, Request, Response } from 'express';
 import http from 'http';
 import jwt from 'jsonwebtoken';
-// import { logger } from './logger/logger.js';
+import { logger } from './logger/logger.js';
 import { router } from './routes/index';
 import { generateToken } from './middlewares/jwt';
 
@@ -34,10 +34,10 @@ export const authMiddleware = async (request: Request, response: Response, next:
             if (error) {
                 console.error(error);
                 return next();
-                // logger.error({ error: 'Unauthorized access', status: 403, message: 'Forbidden access.' });
+                logger.logger.error({ error: 'Unauthorized access', status: 403, message: 'Forbidden access.' })
             }
             console.log(decoded);
-            // logger.info({ error: 'Authorized access', status: 200, message: 'Authorized access.' });
+            logger.logger.info({ error: 'Authorized access', status: 200, message: 'Authorized access.' });
             next();
         });
     } else {

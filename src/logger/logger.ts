@@ -2,18 +2,23 @@ import * as bunyan from 'bunyan';
 import * as path from 'node:path';
 import * as fs from 'node:fs';
 
-let accessLog = fs.createWriteStream('../logs/access.log', { encoding: 'utf-8' });
-let errorLog = fs.createWriteStream('../logs/error.log', { encoding: 'utf-8' });
 
-export const logger = bunyan.createLogger({
+let accessLog = fs.createWriteStream(path.join(__dirname, '../logs/access.log'), { encoding: 'utf-8' });
+let errorLog = fs.createWriteStream(path.join(__dirname, '../logs/error.log'), { encoding: 'utf-8' });
+
+export const logger: any = bunyan.createLogger({
     name: 'Small Streaming Service',
     streams: [
         {
-            type: 'info',
+            level: 'info',
             stream: accessLog
         },
         {
-            type: 'error',
+            level: 'error',
+            stream: process.stderr
+        },
+        {
+            level: 'error',
             stream: errorLog
         }
     ]

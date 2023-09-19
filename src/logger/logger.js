@@ -25,18 +25,23 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.logger = void 0;
 const bunyan = __importStar(require("bunyan"));
+const path = __importStar(require("node:path"));
 const fs = __importStar(require("node:fs"));
-let accessLog = fs.createWriteStream('../logs/access.log', { encoding: 'utf-8' });
-let errorLog = fs.createWriteStream('../logs/error.log', { encoding: 'utf-8' });
+let accessLog = fs.createWriteStream(path.join(__dirname, '../logs/access.log'), { encoding: 'utf-8' });
+let errorLog = fs.createWriteStream(path.join(__dirname, '../logs/error.log'), { encoding: 'utf-8' });
 exports.logger = bunyan.createLogger({
     name: 'Small Streaming Service',
     streams: [
         {
-            type: 'info',
+            level: 'info',
             stream: accessLog
         },
         {
-            type: 'error',
+            level: 'error',
+            stream: process.stderr
+        },
+        {
+            level: 'error',
             stream: errorLog
         }
     ]

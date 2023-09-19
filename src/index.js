@@ -30,7 +30,7 @@ exports.authMiddleware = void 0;
 const express_1 = __importDefault(require("express"));
 const http_1 = __importDefault(require("http"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-// import { logger } from './logger/logger.js';
+const logger_js_1 = require("./logger/logger.js");
 const index_1 = require("./routes/index");
 const jwt_1 = require("./middlewares/jwt");
 const dotenv = __importStar(require("dotenv"));
@@ -57,12 +57,12 @@ const authMiddleware = async (request, response, next) => {
         jsonwebtoken_1.default.verify(request.headers.authorization?.split(' ')[1], secret, (error, decoded) => {
             if (error) {
                 console.error(error);
-                // logger.error({ error: 'Unauthorized access', status: 403, message: 'Forbidden access.' });
-                next(403);
+                return next();
+                logger_js_1.logger.logger.error({ error: 'Unauthorized access', status: 403, message: 'Forbidden access.' });
             }
-            // console.log(decoded);
-            // logger.info({ error: 'Authorized access', status: 200, message: 'Authorized access.' });
-            return next();
+            console.log(decoded);
+            logger_js_1.logger.logger.info({ error: 'Authorized access', status: 200, message: 'Authorized access.' });
+            next();
         });
     }
     else {
