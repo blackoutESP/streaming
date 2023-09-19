@@ -22,15 +22,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -58,15 +49,12 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     return next();
 });
-const authMiddleware = (request, response, next) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
+const authMiddleware = async (request, response, next) => {
     if (request.headers.authorization || request.query.authorization) {
         let bearer = request.headers.authorization || request.query.authorization;
-        // const token = bearer?.slice(bearer.lastIndexOf(' '));
-        console.log('token: ');
+        console.log('token: ', bearer);
         const secret = process.env.api_key;
-        next();
-        jsonwebtoken_1.default.verify((_a = request.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(' ')[1], secret, (error, decoded) => {
+        jsonwebtoken_1.default.verify(request.headers.authorization?.split(' ')[1], secret, (error, decoded) => {
             if (error) {
                 console.error(error);
                 // logger.error({ error: 'Unauthorized access', status: 403, message: 'Forbidden access.' });
@@ -74,16 +62,16 @@ const authMiddleware = (request, response, next) => __awaiter(void 0, void 0, vo
             }
             // console.log(decoded);
             // logger.info({ error: 'Authorized access', status: 200, message: 'Authorized access.' });
-            return next(200);
+            return next();
         });
     }
     else {
-        return next(403);
+        return next();
     }
-});
+};
 exports.authMiddleware = authMiddleware;
 app.use('/api/login', jwt_1.generateToken);
-app.use('/api', exports.authMiddleware, index_1.router);
+app.use('/api/videos', exports.authMiddleware, index_1.router);
 http_1.default.createServer(app).listen(3000, () => {
     console.log(`server listening on port ${process.env.ip}:${process.env.port}`);
 });

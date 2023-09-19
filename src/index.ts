@@ -28,27 +28,25 @@ app.use(function (req: Request, res: Response, next: NextFunction) {
 export const authMiddleware = async (request: Request, response: Response, next: NextFunction) => {
     if (request.headers.authorization || request.query.authorization) {
         let bearer = request.headers.authorization || request.query.authorization;
-        // const token = bearer?.slice(bearer.lastIndexOf(' '));
-        console.log('token: ');
+        console.log('token: ', bearer);
         const secret: string = process.env.api_key!;
-        next();
         jwt.verify(request.headers.authorization?.split(' ')[1]!, secret, (error: any, decoded: any) => {
             if (error) {
                 console.error(error);
+                return next();
                 // logger.error({ error: 'Unauthorized access', status: 403, message: 'Forbidden access.' });
-                next(403);
             }
-            // console.log(decoded);
+            console.log(decoded);
             // logger.info({ error: 'Authorized access', status: 200, message: 'Authorized access.' });
-            return next(200);
+            next();
         });
     } else {
-        return next(403);
+        return next();
     }
 }
 
 app.use('/api/login', generateToken);
-app.use('/api', authMiddleware, router);
+app.use('/api/videos', authMiddleware, router);
 
 http.createServer(app).listen(3000, () => {
     console.log(`server listening on port ${process.env.ip}:${process.env.port}`);

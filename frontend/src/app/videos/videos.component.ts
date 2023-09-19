@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Themes } from '../interfaces/theme-selected.enum';
@@ -20,8 +20,8 @@ export class VideosComponent implements OnInit, OnDestroy {
   private $handler: BehaviorSubject<any>;
   private $destroyed: BehaviorSubject<boolean>;
 
-  constructor() {
-    this.$handler  = new BehaviorSubject(this.handlerInfo);
+  constructor(private router: Router) {
+    this.$handler = new BehaviorSubject(this.handlerInfo);
     this.$destroyed = new BehaviorSubject(false);
   }
 
@@ -37,7 +37,7 @@ export class VideosComponent implements OnInit, OnDestroy {
 
   }
 
-  onThemeSwitch(event: any): void {
-
+  switchTheme(event: any): void {
+    console.log(event.checked);
   }
 }

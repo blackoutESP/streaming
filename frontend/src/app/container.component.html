@@ -3,15 +3,24 @@
     <div class="material-symbols-outlined">Cast</div>
     <h3 class="title">Streaming Service</h3>
   </div>
-  <mat-divider class="divider">|</mat-divider>
-  <mat-divider class="divider">|</mat-divider>
-  <mat-divider class="divider">|</mat-divider>
-  <button mat-button [matMenuTriggerFor]="menu" class="menu">Menu</button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>Films</button>
-    <button mat-button (click)="switchTheme($event)">
-      <mat-slide-toggle (toggleChange)="themeSelected">{{ themeSelected | async }}</mat-slide-toggle>
-    </button>
-  </mat-menu>
+  <mat-divider class="divider"></mat-divider>
+  <!-- <div class="palette">
+    <span class="material-symbols-outlined">
+      dark_mode
+    </span>
+    <mat-slide-toggle [hideIcon]="true" (checked)="checked" (change)="switchTheme($event)"
+      (toggleChange)="themeSelected">
+      {{ themeSelected | async }}
+    </mat-slide-toggle>
+  </div> -->
 </mat-toolbar>
+<main>
+  <div class="videoContainer">
+    <video autoplay buffered controls>
+      <source
+        src="http://0.0.0.0:3000/api/videos/Evanescence_Hi-Lo featuring Lindsey Stirling (Official Music Video).webm?authorization=Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiNGM0NDgxNTAtNjdiYy00NmNjLTgzMzQtZmFlZTU3MTNlY2IwIiwiaWF0IjoxNjk1MTM1ODk1LCJleHAiOjIyOTk5MzU4OTUsImF1ZCI6InVzZXJzIiwiaXNzIjoic21hbGwgc3RyZWFtaW5nIHNlcnZpY2UifQ.76CI_UzcbAVGXkEFeV37GwX2XetO4I9Mey2aN8V3BuQ_0IlqMM0LY0c43HcP5Q1e9eG4FotFvzlXgvSXu-edDA"
+        type="video/webm">
+    </video>
+  </div>
+</main>
 <router-outlet></router-outlet>

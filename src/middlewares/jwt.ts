@@ -21,8 +21,6 @@ export const generateToken = (request: Request, response: Response, next: NextFu
         expiresIn: (1000 * 60 * 60 * 24) * 7, // 7d
         mutatePayload: true
     }, (error, encoded) => {
-        console.error('err: ', error);
-        console.log('token: ', encoded);
-        return response.status(304).json({ ok: true, token: encoded, errors: error });
+        return response.status(200).json({ ok: true, token: encoded, errors: error });
     });
 };

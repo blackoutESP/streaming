@@ -35,17 +35,16 @@ const generateUUID = () => {
     return uuid;
 };
 const generateToken = (request, response, next) => {
-    const secret = process.env.api_key;
-    console.log('secret api_key: \n', secret);
-    jwt.sign('Alex Algar', secret, {
+    const api_key_secret = process.env.api_key;
+    const api_jwt_secret = process.env.jwt_secret;
+    jwt.sign({ name: api_jwt_secret }, api_key_secret, {
         algorithm: 'HS512',
         issuer: 'small streaming service',
         audience: 'users',
         expiresIn: (1000 * 60 * 60 * 24) * 7,
         mutatePayload: true
-    }, (err, token) => {
-        console.error('err: ', err);
-        console.log('token: ', token);
+    }, (error, encoded) => {
+        return response.status(200).json({ ok: true, token: encoded, errors: error });
     });
 };
 exports.generateToken = generateToken;

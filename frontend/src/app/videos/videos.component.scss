@@ -7,12 +7,7 @@ $warn: map-get($dark-theme, warn);
 $warn-light: map-get($light-theme, warn);
 
 
-
 /* Responsive Styles */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 767px) {}
 
-}
-
-@media screen and (max-width: 575px) {
-
-}
+@media screen and (max-width: 575px) {}

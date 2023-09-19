@@ -1,13 +1,33 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getVideoById = exports.getVideos = void 0;
-const fs_1 = __importDefault(require("fs"));
-const path_1 = __importDefault(require("path"));
+const fs = __importStar(require("node:fs"));
+const path = __importStar(require("node:path"));
 const getVideos = (request, response, next) => {
-    fs_1.default.readdir(path_1.default.join(__dirname, '../assets'), { encoding: 'utf-8' }, (error, files) => {
+    fs.readdir(path.join(__dirname, '../assets'), { encoding: 'utf-8' }, (error, files) => {
         if (error) {
             console.error(error);
             next(error);
@@ -24,10 +44,10 @@ exports.getVideos = getVideos;
 const getVideoById = (request, response, next) => {
     const id = request.params.id;
     console.log(id);
-    const assets = path_1.default.join(__dirname, '../assets');
-    const filePath = path_1.default.join(assets, id);
-    const size = fs_1.default.statSync(filePath).size;
-    const ext = path_1.default.extname(filePath);
+    const assets = path.join(__dirname, '../assets');
+    const filePath = path.join(assets, id);
+    const size = fs.statSync(filePath).size;
+    const ext = path.extname(filePath);
     const range = request.headers.range;
     if (range) {
         const bytes = range.replace(/bytes=/, '').split('-');
@@ -40,7 +60,7 @@ const getVideoById = (request, response, next) => {
             'Content-Type': `video/${ext}`,
             'Content-Length': chunkSize
         };
-        const stream = fs_1.default.createReadStream(filePath, { start, end });
+        const stream = fs.createReadStream(filePath, { start, end });
         response.writeHead(206, headers);
         stream.pipe(response);
     }
@@ -51,7 +71,7 @@ const getVideoById = (request, response, next) => {
             'Content-Length': size
         };
         response.writeHead(200, headers);
-        const stream = fs_1.default.createReadStream(filePath);
+        const stream = fs.createReadStream(filePath);
         stream.pipe(response);
     }
 };

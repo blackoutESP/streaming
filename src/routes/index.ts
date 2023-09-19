@@ -4,7 +4,7 @@ import { Router } from 'express';
 
 const router = Router();
 
-router.get('/videos', getVideos);
+router.get('/', getVideos);
 
 router.get('/:id', getVideoById);
 

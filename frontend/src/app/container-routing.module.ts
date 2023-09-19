@@ -4,7 +4,7 @@ import { Container } from './container.component';
 
 const routes: Routes = [
   { path: '', component: Container },
-  { path: 'videos/all', loadChildren: () => import('./videos/videos.module').then(m => m.VideosModule)  },
+  { path: 'videos', loadChildren: () => import('./videos/videos.module').then(m => m.VideosModule) },
   { path: 'videos/:id', loadChildren: () => import('./videos/videos.module').then(m => m.VideosModule) }
 ];
 
