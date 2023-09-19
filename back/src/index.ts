@@ -1,10 +1,11 @@
 import express, { NextFunction, Request, Response } from 'express';
 import http from 'http';
 import jwt from 'jsonwebtoken';
-import { logger } from './logger/logger.js';
-import router from './routes/index';
+// import logger from './logger/logger.js';
+import { router } from './routes/index.js';
 import { generateToken } from './middlewares/jwt.js';
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 
@@ -21,31 +22,9 @@ app.use(function (req: Request, res: Response, next: NextFunction) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 });
 
-export const authMiddleware = async (request: Request, response: Response, next: NextFunction) => {
-    if (request.headers.authorization || request.query.authorization) {
-        let bearer = request.headers.authorization || request.query.authorization;
-        const token = bearer?.slice(bearer.lastIndexOf(' '));
-        console.log(token);
-        const secret: string = process.env.api_key || '';
-        next();
-        jwt.verify(token, secret, (error: any, decoded: any) => {
-            if (error) {
-                console.error(error);
-                logger.error({ error: 'Unauthorized access', status: 403, message: 'Forbidden access.' });
-                next(403);
-            }
-            // console.log(decoded);
-            logger.info({ error: 'Authorized access', status: 200, message: 'Authorized access.' });
-            next();
-        });
-    } else {
-        next();
-    }
-};
-
 app.use('/api/login', generateToken);
-app.use('/api/videos', authMiddleware, router);
+app.use('/api/videos', router);
 
-http.createServer(app).listen(3000, () => {
+http.createServer(app).listen(process.env.port, () => {
     console.log('server listening on port:', 3000);
 });

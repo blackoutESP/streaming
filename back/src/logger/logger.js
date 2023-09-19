@@ -1,21 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logger = void 0;
 var bunyan_1 = require("bunyan");
-var path_1 = require("path");
-var fs_1 = require("fs");
-var accessLog = fs_1.default.createWriteStream(path_1.default.join(__dirname + './../logs/access.log'), { encoding: 'utf-8' });
-var errorLog = fs_1.default.createWriteStream(path_1.default.join(__dirname + './../logs/error.log'), { encoding: 'utf-8' });
-exports.logger = bunyan_1.default.createLogger({
-    name: 'Streaming Service Logger',
+var fs = require("fs");
+var accessLog = fs.createWriteStream('../logs/access.log', { encoding: 'utf-8' });
+var errorLog = fs.createWriteStream('../logs/error.log', { encoding: 'utf-8' });
+var logger = bunyan_1.default.createLogger({
+    name: 'Small Streaming Service Logger',
     streams: [
         {
-            level: 'info',
+            type: 'info',
             stream: accessLog
         },
         {
-            level: 'error',
+            type: 'error',
             stream: errorLog
         }
     ]
 });
+exports.default = logger;

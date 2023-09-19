@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import fs from 'fs';
 import path from 'path';
 
-const getVideos = (request: Request, response: Response, next: NextFunction) => {
+export const getVideos = (request: Request, response: Response, next: NextFunction) => {
     fs.readdir(path.join(__dirname, '../assets'), { encoding: 'utf-8' }, (error, files) => {
         if (error) {
             console.error(error);
@@ -16,7 +16,7 @@ const getVideos = (request: Request, response: Response, next: NextFunction) => 
     });
 }
 
-const getVideoById = (request: Request, response: Response, next: NextFunction) => {
+export const getVideoById = (request: Request, response: Response, next: NextFunction) => {
     const id = request.params.id;
     const assets = path.join(__dirname, '../assets');
     const filePath = path.join(assets, id);
@@ -48,5 +48,3 @@ const getVideoById = (request: Request, response: Response, next: NextFunction) 
         stream.pipe(response);
     }
 }
-
-export default { getVideos, getVideoById };

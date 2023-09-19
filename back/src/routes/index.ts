@@ -1,13 +1,13 @@
-import videosMiddleware from '../middlewares/video.js';
+import { getVideos, getVideoById } from '../middlewares/video.js';
 import { uploadVideo } from '../middlewares/upload.js';
-import express from 'express';
+import { Router } from 'express';
 
-const router = express.Router();
+const router = Router();
 
-router.get('/', videosMiddleware.getVideos);
+router.get('/', getVideos);
 
-router.get('/:id', videosMiddleware.getVideoById);
+router.get('/:id', getVideoById);
 
 router.post('/upload', uploadVideo);
 
-export default router;
+export { router };
