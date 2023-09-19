@@ -17,3 +17,5 @@
 To sum up, create an assets called folder at root level of back folder, where the uploaded videos will be stored.
 
 Enjoy.
+
+V2.0 In Progress...
