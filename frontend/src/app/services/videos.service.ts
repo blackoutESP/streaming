@@ -16,4 +16,13 @@ export class VideosService {
       })
     });
   }
+
+  public getVideoById(id: string, token: string): Observable<any[]> {
+    console.log(id);
+    return this.http.get<object[]>(`http://0.0.0.0:3000/api/videos/${id}?authorization=Bearer ${token}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
 }

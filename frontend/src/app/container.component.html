@@ -5,11 +5,10 @@
   </div>
   <mat-divider class="divider"></mat-divider>
   <div class="palette">
-    <span class="material-symbols-outlined">
+    <div class="material-symbols-outlined">
       dark_mode
-    </span>
-    <mat-slide-toggle [hideIcon]="true" (checked)="checked" (change)="switchTheme($event)"
-      (toggleChange)="themeSelected">
+    </div>
+    <mat-slide-toggle (checked)="checked" (change)="switchTheme($event)" (toggleChange)="themeSelected">
       {{ themeSelected | async }}
     </mat-slide-toggle>
   </div>
@@ -30,13 +29,13 @@
           </div>
           <div class="mat-list-padding" *ngIf="loaded">
             <mat-list-item id="item" *ngFor="let video of videos">
-              <a target="_self">{{ video }}</a>
+              <a target="_self" (click)="getVideoById(video)">{{ video }}</a>
             </mat-list-item>
           </div>
         </mat-list>
       </ng-container>
     </cdk-virtual-scroll-viewport>
+    <div class="version-info">Current build: {{ version }}</div>
   </section>
 </main>
-<span class="version-info">Current build: {{ version }} - Current Angular Version: {{VERSION}}</span>
 <router-outlet></router-outlet>
