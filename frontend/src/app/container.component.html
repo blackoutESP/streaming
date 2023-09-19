@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar [ngClass]="{'dark-theme': themeSelected.value === 'dark', 'light-theme': themeSelected.value === 'light'}">
   <div class="inline">
     <div class="material-symbols-outlined">Cast</div>
     <h3 class="title">Streaming Service</h3>
@@ -13,7 +13,8 @@
     </mat-slide-toggle>
   </div>
 </mat-toolbar>
-<main class="inline-content">
+<main class="inline-content"
+  [ngClass]="{'dark-theme': themeSelected.value === 'dark', 'light-theme': themeSelected.value === 'light'}">
   <section class="video">
     <video autoplay buffered controls muted>
       <source [src]="" type="video/webm">
@@ -23,19 +24,19 @@
     <cdk-virtual-scroll-viewport class="viewport">
       <ng-container>
         <mat-list>
-          <div class="spinner" *ngIf="!loaded">
-            <mat-progress-spinner class="example-margin" [color]="'primary'" [mode]="'indeterminate'">
-            </mat-progress-spinner>
-          </div>
-          <div class="mat-list-padding" *ngIf="loaded">
-            <mat-list-item id="item" *ngFor="let video of videos">
-              <a target="_self" (click)="getVideoById(video)">{{ video }}</a>
-            </mat-list-item>
-          </div>
+          <ng-container>
+            <div class="spinner" *ngIf="!loaded">
+              <mat-spinner [mode]="'indeterminate'" [color]="'primary'"></mat-spinner>
+            </div>
+            <div class="mat-list-padding" *ngIf="loaded">
+              <mat-list-item id="item" *ngFor="let video of videos">
+                <a target="_self" (click)="getVideoById(video)">{{ video }}</a>
+              </mat-list-item>
+            </div>
+          </ng-container>
         </mat-list>
       </ng-container>
     </cdk-virtual-scroll-viewport>
-    <div class="version-info">Current build: {{ version }}</div>
   </section>
 </main>
 <router-outlet></router-outlet>
