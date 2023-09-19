@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getVideoById = exports.getVideos = void 0;
 const fs_1 = __importDefault(require("fs"));
-const path_1 = __importDefault(require("../../../src/node_modules/path/path"));
+const path_1 = __importDefault(require("path"));
 const getVideos = (request, response, next) => {
     fs_1.default.readdir(path_1.default.join(__dirname, '../assets'), { encoding: 'utf-8' }, (error, files) => {
         if (error) {
@@ -23,6 +23,7 @@ const getVideos = (request, response, next) => {
 exports.getVideos = getVideos;
 const getVideoById = (request, response, next) => {
     const id = request.params.id;
+    console.log(id);
     const assets = path_1.default.join(__dirname, '../assets');
     const filePath = path_1.default.join(assets, id);
     const size = fs_1.default.statSync(filePath).size;

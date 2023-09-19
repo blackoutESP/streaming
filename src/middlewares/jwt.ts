@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 
 const generateUUID = () => {
     let date = new Date().getTime();
@@ -11,13 +11,18 @@ const generateUUID = () => {
     return uuid;
 };
 
-export const generateToken = async (request: Request, response: Response, next: NextFunction) => {
-    const secret: string = process.env.api_key || '';
-    jwt.sign({ key: generateUUID() }, secret, { algorithm: 'HS512' }, (error, token) => {
-        if (error) {
-            console.error(error);
-            return next(error);
-        }
-        return response.status(200).json({ ok: true, data: token, errors: [] });
+export const generateToken = (request: Request, response: Response, next: NextFunction) => {
+    const api_key_secret: string = process.env.api_key!;
+    const api_jwt_secret: string = process.env.jwt_secret!;
+    jwt.sign({ name: api_jwt_secret }, api_key_secret, {
+        algorithm: 'HS512',
+        issuer: 'small streaming service',
+        audience: 'users',
+        expiresIn: (1000 * 60 * 60 * 24) * 7, // 7d
+        mutatePayload: true
+    }, (error, encoded) => {
+        console.error('err: ', error);
+        console.log('token: ', encoded);
+        return response.status(304).json({ ok: true, token: encoded, errors: error });
     });
 };

@@ -1,10 +1,10 @@
-import { getVideos, getVideoById } from '../../.old/src/middlewares/video.js';
-import { uploadVideo } from '../../.old/src/middlewares/upload.js';
+import { getVideos, getVideoById } from '../middlewares/video';
+import { uploadVideo } from '../middlewares/upload';
 import { Router } from 'express';
 
 const router = Router();
 
-router.get('/', getVideos);
+router.get('/videos', getVideos);
 
 router.get('/:id', getVideoById);
 

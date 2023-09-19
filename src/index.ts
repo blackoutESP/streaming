@@ -2,9 +2,11 @@ import express, { NextFunction, Request, Response } from 'express';
 import http from 'http';
 import jwt from 'jsonwebtoken';
 // import { logger } from './logger/logger.js';
-// import { router } from '../.old/src/routes/index.js';
-// import { generateToken } from '../.old/src/middlewares/jwt.js';
-import dotenv from 'dotenv';
+import { router } from './routes/index';
+import { generateToken } from './middlewares/jwt';
+
+import * as dotenv from 'dotenv';
+// console.log(dotenv.configDotenv()); Show DotEnv config
 dotenv.config();
 
 const app = express();
@@ -16,37 +18,38 @@ app.use(function (req: Request, res: Response, next: NextFunction) {
     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
     res.header("Vary", "Origin");
     res.header("Access-Control-Allow-Credentials", "true");
-    res.header("Access-Control-Allow-Methods", "GET, POST, HEAD");
+    res.header("Access-Control-Allow-Methods", "GET, POST, HEAD, OPTIONS");
     // Access-Control-Expose-Headers
     // Access-Control-Max-Age
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    return next();
 });
 
 export const authMiddleware = async (request: Request, response: Response, next: NextFunction) => {
     if (request.headers.authorization || request.query.authorization) {
         let bearer = request.headers.authorization || request.query.authorization;
         // const token = bearer?.slice(bearer.lastIndexOf(' '));
-        console.log(bearer);
-        const secret: string = process.env.api_key || '';
+        console.log('token: ');
+        const secret: string = process.env.api_key!;
         next();
-        jwt.verify('', secret, (error: any, decoded: any) => {
+        jwt.verify(request.headers.authorization?.split(' ')[1]!, secret, (error: any, decoded: any) => {
             if (error) {
                 console.error(error);
-                //logger.error({ error: 'Unauthorized access', status: 403, message: 'Forbidden access.' });
+                // logger.error({ error: 'Unauthorized access', status: 403, message: 'Forbidden access.' });
                 next(403);
             }
             // console.log(decoded);
-            //logger.info({ error: 'Authorized access', status: 200, message: 'Authorized access.' });
-            next();
+            // logger.info({ error: 'Authorized access', status: 200, message: 'Authorized access.' });
+            return next(200);
         });
     } else {
-        next();
+        return next(403);
     }
-};
+}
 
-// app.use('/api/login', generateToken);
-// app.use('/api/videos', router);
+app.use('/api/login', generateToken);
+app.use('/api', authMiddleware, router);
 
-http.createServer(app).listen(process.env.port, () => {
-    console.log('server listening on port:', 3000);
+http.createServer(app).listen(3000, () => {
+    console.log(`server listening on port ${process.env.ip}:${process.env.port}`);
 });
