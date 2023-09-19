@@ -9,7 +9,7 @@ export class VideosService {
 
   constructor(private http: HttpClient) { }
 
-  private getVideos(): Observable<object[]> {
+  public getVideos(): Observable<any[]> {
     return this.http.get<object[]>('http://0.0.0.0:3000/api/videos', {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'

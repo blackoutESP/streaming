@@ -44,24 +44,25 @@ app.use(function (req, res, next) {
     res.header("Vary", "Origin");
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Methods", "GET, POST, HEAD, OPTIONS");
-    // Access-Control-Expose-Headers
-    // Access-Control-Max-Age
+    res.header("Access-Control-Expose-Headers");
+    // res.header("Access-Control-Max-Age", "3600000");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     return next();
 });
 const authMiddleware = async (request, response, next) => {
-    if (request.headers.authorization || request.query.authorization) {
+    console.log(request.url);
+    if ((request.headers.authorization || request.query.authorization) || !request.url.includes('http://0.0.0.0:3000/api/login')) { // || (!request.url.includes('http://localhost:4200/api/login') || !request.url.includes('http://localhost:4200/api/videos'))
         let bearer = request.headers.authorization || request.query.authorization;
         console.log('token: ', bearer);
         const secret = process.env.api_key;
-        jsonwebtoken_1.default.verify(request.headers.authorization?.split(' ')[1], secret, (error, decoded) => {
+        const token = request.headers.authorization?.split(' ')[1];
+        jsonwebtoken_1.default.verify(token, secret, (error, decoded) => {
             if (error) {
                 console.error(error);
-                return next();
-                logger_js_1.logger.logger.error({ error: 'Unauthorized access', status: 403, message: 'Forbidden access.' });
+                logger_js_1.logger.error({ error: 'Unauthorized access', status: 403, message: 'Forbidden access.' });
             }
             console.log(decoded);
-            logger_js_1.logger.logger.info({ error: 'Authorized access', status: 200, message: 'Authorized access.' });
+            logger_js_1.logger.info({ error: 'Authorized access', status: 200, message: 'Authorized access.' });
             next();
         });
     }

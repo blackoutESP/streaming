@@ -1,4 +1,4 @@
-@import '../../custom-theme.scss';
+@import "../../custom-theme.scss";
 $primary: map-get($dark-theme, primary);
 $primary-light: map-get($light-theme, primary);
 $accent: map-get($dark-theme, accent);

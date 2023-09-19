@@ -4,7 +4,7 @@
     <h3 class="title">Streaming Service</h3>
   </div>
   <mat-divider class="divider"></mat-divider>
-  <!-- <div class="palette">
+  <div class="palette">
     <span class="material-symbols-outlined">
       dark_mode
     </span>
@@ -12,15 +12,31 @@
       (toggleChange)="themeSelected">
       {{ themeSelected | async }}
     </mat-slide-toggle>
-  </div> -->
-</mat-toolbar>
-<main>
-  <div class="videoContainer">
-    <video autoplay buffered controls>
-      <source
-        src="http://0.0.0.0:3000/api/videos/Evanescence_Hi-Lo featuring Lindsey Stirling (Official Music Video).webm?authorization=Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiNGM0NDgxNTAtNjdiYy00NmNjLTgzMzQtZmFlZTU3MTNlY2IwIiwiaWF0IjoxNjk1MTM1ODk1LCJleHAiOjIyOTk5MzU4OTUsImF1ZCI6InVzZXJzIiwiaXNzIjoic21hbGwgc3RyZWFtaW5nIHNlcnZpY2UifQ.76CI_UzcbAVGXkEFeV37GwX2XetO4I9Mey2aN8V3BuQ_0IlqMM0LY0c43HcP5Q1e9eG4FotFvzlXgvSXu-edDA"
-        type="video/webm">
-    </video>
   </div>
+</mat-toolbar>
+<main class="inline-content">
+  <section class="video">
+    <video autoplay buffered controls muted>
+      <source [src]="" type="video/webm">
+    </video>
+  </section>
+  <section class="list">
+    <cdk-virtual-scroll-viewport class="viewport">
+      <ng-container>
+        <mat-list>
+          <div class="spinner" *ngIf="!loaded">
+            <mat-progress-spinner class="example-margin" [color]="'primary'" [mode]="'indeterminate'">
+            </mat-progress-spinner>
+          </div>
+          <div class="mat-list-padding" *ngIf="loaded">
+            <mat-list-item id="item" *ngFor="let video of videos">
+              <a target="_self">{{ video }}</a>
+            </mat-list-item>
+          </div>
+        </mat-list>
+      </ng-container>
+    </cdk-virtual-scroll-viewport>
+  </section>
 </main>
+<span class="version-info">Current build: {{ version }} - Current Angular Version: {{VERSION}}</span>
 <router-outlet></router-outlet>
