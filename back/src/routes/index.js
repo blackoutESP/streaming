@@ -1,8 +1,10 @@
-import videosMiddleware from '../middlewares/video.js';
-import { uploadVideo } from '../middlewares/upload.js';
-import express from 'express';
-const router = express.Router();
-router.get('/videos', videosMiddleware.getVideos);
-router.get('/videos/:id', videosMiddleware.getVideoById);
-router.post('/upload', uploadVideo);
-export default router;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var video_js_1 = require("../middlewares/video.js");
+var upload_js_1 = require("../middlewares/upload.js");
+var express_1 = require("express");
+var router = express_1.default.Router();
+router.get('/', video_js_1.default.getVideos);
+router.get('/:id', video_js_1.default.getVideoById);
+router.post('/upload', upload_js_1.uploadVideo);
+exports.default = router;

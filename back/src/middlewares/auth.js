@@ -1,3 +1,4 @@
+"use strict";
 /*
     export const authMiddleware = async (request: Request, response: Response, next: NextFunction) => {
         if (request.headers.authorization || request.query.authorization) {
@@ -20,7 +21,7 @@
         }
     };
 */
-export {};
+Object.defineProperty(exports, "__esModule", { value: true });
 // const authMiddleware = async(request, _, next) => {
 //     if(request.headers.authorization || request.query.authorization){
 //         let bearer = request.headers.authorization || request.query.authorization;

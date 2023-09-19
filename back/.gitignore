@@ -1,6 +1,0 @@
-assets/.DS_Store
-logs
-.env*
-.flaskenv*
-!.env.project
-!.env.vault

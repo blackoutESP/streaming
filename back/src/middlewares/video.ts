@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 const getVideos = (request: Request, response: Response, next: NextFunction) => {
-    fs.readdir(path.join(__dirname, '../assets/'), { encoding: 'utf-8' }, (error, files) => {
+    fs.readdir(path.join(__dirname, '../assets'), { encoding: 'utf-8' }, (error, files) => {
         if (error) {
             console.error(error);
             next(error);
@@ -18,7 +18,7 @@ const getVideos = (request: Request, response: Response, next: NextFunction) => 
 
 const getVideoById = (request: Request, response: Response, next: NextFunction) => {
     const id = request.params.id;
-    const assets = path.join(__dirname, '../assets/');
+    const assets = path.join(__dirname, '../assets');
     const filePath = path.join(assets, id);
     const size = fs.statSync(filePath).size;
     const ext = path.extname(filePath);

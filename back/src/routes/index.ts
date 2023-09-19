@@ -4,9 +4,9 @@ import express from 'express';
 
 const router = express.Router();
 
-router.get('/videos', videosMiddleware.getVideos);
+router.get('/', videosMiddleware.getVideos);
 
-router.get('/videos/:id', videosMiddleware.getVideoById);
+router.get('/:id', videosMiddleware.getVideoById);
 
 router.post('/upload', uploadVideo);
 

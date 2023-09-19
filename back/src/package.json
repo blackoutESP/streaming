@@ -1,0 +1,35 @@
+{
+  "name": "streaming",
+  "version": "2.0.0",
+  "description": "Small Streaming Service",
+  "main": "index",
+  "scripts": {
+    "start": "NODE_ENV=dev DEBUG=* nodemon && tsc index.ts",
+    "dev": "NODE_ENV=dev DEBUG=* nodemon && tsc index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "streaming"
+  ],
+  "author": "Alex Algar",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.17",
+    "bunyan": "^1.8.12",
+    "dotenv": "^16.3.1",
+    "express": "^4.17.1",
+    "formidable": "^3.5.1",
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security",
+    "http-errors": "^1.7.3",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^2.0.2",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@types/bunyan": "^1.8.9",
+    "@types/formidable": "^3.4.3",
+    "@types/jsonwebtoken": "^9.0.3",
+    "typescript": "^5.2.2"
+  }
+}
