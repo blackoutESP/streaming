@@ -5,7 +5,10 @@ import * as fs from 'fs';
 let accessLog = fs.createWriteStream('../logs/access.log', { encoding: 'utf-8' });
 let errorLog = fs.createWriteStream('../logs/error.log', { encoding: 'utf-8' });
 
-const logger = bunyan.createLogger({
+export const logger = bunyan.createLogger({ name: 'Small Streaming Service' });
+
+/*
+{
     name: 'Small Streaming Service Logger',
     streams: [
         {
@@ -17,6 +20,5 @@ const logger = bunyan.createLogger({
             stream: errorLog
         }
     ]
-});
-
-export default logger;
+}
+*/
