@@ -33,6 +33,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const logger_js_1 = require("./logger/logger.js");
 const index_1 = require("./routes/index");
 const jwt_1 = require("./middlewares/jwt");
+const package_json_1 = __importDefault(require("./package.json"));
 const dotenv = __importStar(require("dotenv"));
 // console.log(dotenv.configDotenv()); Show DotEnv config
 dotenv.config();
@@ -75,4 +76,5 @@ app.use('/api/login', jwt_1.generateToken);
 app.use('/api/videos', exports.authMiddleware, index_1.router);
 http_1.default.createServer(app).listen(3000, () => {
     console.log(`server listening on port ${process.env.ip}:${process.env.port}`);
+    console.log(`current build: ${package_json_1.default.version}`);
 });

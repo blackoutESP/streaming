@@ -6,10 +6,20 @@
   </div>
   <mat-divider class="divider"></mat-divider>
   <div class="inline palette">
-    <mat-slide-toggle [hideIcon]="true" (checked)="checked" (change)="switchTheme($event)"
-      (toggleChange)="themeSelected">
-      {{ themeSelected | async }}
-    </mat-slide-toggle>
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon aria-hidden="false" aria-label="Palette Icon" fontIcon="palette"></mat-icon>
+        <mat-slide-toggle [hideIcon]="true" (checked)="checked" (change)="switchTheme($event)"
+          (toggleChange)="themeSelected">
+          {{ themeSelected | async }}
+        </mat-slide-toggle>
+      </button>
+      <button mat-menu-item>
+        <mat-icon aria-hidden="false" aria-label="Person Icon" fontIcon="person"></mat-icon>
+        Account Settings...
+      </button>
+    </mat-menu>
   </div>
 </mat-toolbar>
 <main class="inline">

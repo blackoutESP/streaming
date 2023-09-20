@@ -36,7 +36,7 @@ $warn: map-get($dark-theme, warn);
 }
 
 .title {
-  height: 1.2em;
+  height: 3em;
   font-size: 1.2em;
   line-height: 1.2em;
   display: flex;
@@ -53,12 +53,13 @@ $warn: map-get($dark-theme, warn);
 }
 
 .palette {
-  height: 1.2em;
+  height: 3em;
   font-size: 1.2em;
-  line-height: 1.2em;
+  height: 3em;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .video {
