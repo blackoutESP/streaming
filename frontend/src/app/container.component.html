@@ -5,15 +5,15 @@
   </div>
   <mat-divider class="divider"></mat-divider>
   <div class="palette">
-    <div class="material-symbols-outlined">
-      dark_mode
-    </div>
-    <mat-slide-toggle (checked)="checked" (change)="switchTheme($event)" (toggleChange)="themeSelected">
+    <mat-slide-toggle [hideIcon]="true" (checked)="checked" (change)="switchTheme($event)"
+      (toggleChange)="themeSelected">
       {{ themeSelected | async }}
     </mat-slide-toggle>
   </div>
 </mat-toolbar>
-<main class="inline-content">
+<span class="version-info">Current build: {{ version }}</span>
+<main class="inline-content"
+  [ngClass]="{'dark-theme': themeSelected.value === 'dark', 'light-theme': themeSelected.value === 'light'}">
   <section class="video" *ngIf="src">
     <video id="player" buffered controls autoplay [src]="src">
       <source [type]="type">
@@ -37,7 +37,6 @@
       </ng-container>
     </cdk-virtual-scroll-viewport>
   </section>
-  <!-- <span class="version-info">Current Version: {{version}}</span> -->
 </main>
 
 <router-outlet></router-outlet>
