@@ -1,4 +1,5 @@
-<mat-toolbar [ngClass]="{'dark-theme': themeSelected.value === 'dark', 'light-theme': themeSelected.value === 'light'}">
+<mat-toolbar
+  [ngClass]="{'dark-theme': themeSelected.value === 'dark-theme', 'light-theme': themeSelected.value === 'light-theme'}">
   <div class="inline">
     <div class="material-symbols-outlined">Cast</div>
     <h3 class="title">Streaming Service</h3>
@@ -11,13 +12,10 @@
     </mat-slide-toggle>
   </div>
 </mat-toolbar>
-<main class="inline-content"
-  [ngClass]="{'dark-theme': themeSelected.value === 'dark', 'light-theme': themeSelected.value === 'light'}">
-  <section class="video" *ngIf="src">
-    <video id="player" buffered controls autoplay [src]="src">
-      <source [type]="type">
-    </video>
-  </section>
+<router-outlet></router-outlet>
+
+<!--
+  <main>
   <section class="list">
     <cdk-virtual-scroll-viewport class="viewport">
       <ng-container>
@@ -36,6 +34,30 @@
       </ng-container>
     </cdk-virtual-scroll-viewport>
   </section>
+  <router-outlet></router-outlet>
 </main>
-<span class="version-info">Current build: {{ version }}</span>
-<router-outlet></router-outlet>
+-->
+<!-- <main class="inline-content"
+  [ngClass]="{'dark-theme': themeSelected.value === 'dark', 'light-theme': themeSelected.value === 'light'}">
+  <section class="video" *ngIf="src">
+    <video id="player" buffered controls autoplay [src]="src">
+      <source [type]="type">
+    </video>
+  </section>
+
+</main> -->
+
+
+<!--
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        This is the expansion title
+      </mat-panel-title>
+      <mat-panel-description>
+        This is a summary of the content
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>This is the primary content of the panel.</p>
+  </mat-expansion-panel>
+ -->

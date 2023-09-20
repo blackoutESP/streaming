@@ -1,24 +1,24 @@
-import { Component, AfterViewInit, ElementRef, Input, OnInit, Output, Sanitizer, VERSION, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnDestroy, OnInit, Output, Sanitizer } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { LoginService } from './services/login.service';
 import { VideosService } from './services/videos.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import version from 'version';
+import packageJSON from '../../package.json';
 
 @Component({
   selector: 'app-root',
   templateUrl: './container.component.html',
   styleUrls: ['./container.theme.scss']
 })
-export class Container implements OnInit {
+export class Container implements OnInit, OnDestroy {
 
   private overlay: any;
   @Input() public overlayTheme = new BehaviorSubject<string>('dark-theme');
   @Output() themeSelected: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
   @Output() checked: BehaviorSubject<boolean> = new BehaviorSubject(true);
   public title = 'Small Streaming Service';
-  public version: string = version.front;
+  public version: string = packageJSON.version;
   public src: string = encodeURI(`http://0.0.0.0:3000/api/videos/`);
   public loaded: BehaviorSubject<boolean> = new BehaviorSubject(true);
   public videos: string[] = [];
@@ -43,7 +43,11 @@ export class Container implements OnInit {
 
   ngOnInit(): void {
     this.auth();
-    this.feedVideoList();
+    // this.feedVideoList();
+  }
+
+  ngOnDestroy(): void {
+
   }
 
   private auth(): void {

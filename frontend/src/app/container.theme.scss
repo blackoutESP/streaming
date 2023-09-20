@@ -58,8 +58,8 @@ $warn: map-get($dark-theme, warn);
 }
 
 video {
-  height: 360px;
-  width: 640px;
+  height: 720px;
+  width: 1280px;
 }
 
 .video {
@@ -84,11 +84,11 @@ video {
   font-size: 1em;
   line-height: 1em;
   text-overflow: ellipsis;
-  padding-inline: 1em .2em;
-  // writing-mode: sideways-rl;
-  direction: rtl;
-  margin-inline: 1em .2em;
-  // writing-mode: sideways-rl;
+  // padding-inline: 1em .2em;
+  //writing-mode: sideways-rl;
+  // direction: rtl;
+  // margin-inline: 1em .2em;
+  //writing-mode: sideways-rl;
   cursor: pointer;
 }
 
@@ -96,6 +96,10 @@ video {
   // BREAK LINE AFTER EACH LINK
   content: "\a";
   white-space: pre;
+}
+
+.mat-mdc-form-field+.mat-mdc-form-field {
+  margin-left: 8px;
 }
 
 .spinner {
@@ -129,4 +133,10 @@ video {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #373a3b;
+}
+
+.version {
+  height: 2em;
+  line-height: 2em;
+  font-weight: 400;
 }
