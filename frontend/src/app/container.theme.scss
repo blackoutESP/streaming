@@ -9,7 +9,7 @@ $warn: map-get($dark-theme, warn);
 .inline {
   display: grid;
   grid-template-rows: 100%;
-  grid-template-columns: 20%;
+  grid-template-columns: 100%;
   grid-template-areas: "icon title";
 }
 
@@ -51,18 +51,15 @@ $warn: map-get($dark-theme, warn);
 
 .inline-content {
   display: grid;
-  grid-template-columns: 80% 20%;
-  grid-template-rows: 10% 1fr;
+  grid-template-columns: 75% 25%;
+  grid-template-rows: 10% 85%;
   grid-template-areas: "video titles";
-  border: 1px dotted;
+  border: 1px dotted rgb(86, 95, 105);
 }
 
 video {
-  width: 1280px;
-  min-width: 1280px;
-  height: 720px;
-  min-height: 720px;
-  border: 1px dotted;
+  height: 480px;
+  width: 720px;
 }
 
 .video {
@@ -74,7 +71,7 @@ video {
 .list {
   display: grid;
   grid-area: titles;
-  height: 720px;
+  height: 100%;
   padding-inline: 1em .5em;
   writing-mode: horizontal-tb;
   direction: ltr;
@@ -131,13 +128,4 @@ video {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #373a3b;
-}
-
-.version-info {
-  display: grid;
-  grid-area: versionInfo;
-  flex-direction: row;
-  width: 100%;
-  align-items: flex-start;
-  color: #52585a;
 }

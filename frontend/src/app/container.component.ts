@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, VERSION } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, Input, OnInit, Output, Sanitizer, VERSION, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { LoginService } from './services/login.service';
@@ -13,43 +13,57 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 export class Container implements OnInit {
 
   public title = 'Small Streaming Service';
-  public version = '2.0-1';
+  public version = '2.0-1' || VERSION.full;
   private overlay: any;
   @Input() public overlayTheme = new BehaviorSubject<string>('dark-theme');
   @Output() themeSelected: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
   @Output() checked: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  @ViewChild('player', { static: true }) player!: ElementRef;
+  public src: BehaviorSubject<string> = new BehaviorSubject(encodeURI(`http://0.0.0.0:3000/api/videos/`));
+  public url: string = '';
   public loaded: BehaviorSubject<boolean> = new BehaviorSubject(true);
   public videos: string[] = [];
+  public type: string = '';
   private token: string = '';
   public mobile: boolean = false;
+
   constructor(
     private overlayContainer: OverlayContainer,
     private router: Router,
     private loginService: LoginService,
-    private videosService: VideosService) {
+    private videosService: VideosService,
+    private sanitizer: Sanitizer) {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|CriOS/i.test(navigator.userAgent)) {
       this.mobile = true;
     } else {
       this.mobile = false;
     }
     this.overlay = this.overlayContainer.getContainerElement();
-    console.log(this.overlayContainer.getContainerElement());
+    // this.router.navigate(['videos'], { skipLocationChange: false });
   }
 
-  // this.router.navigate(['videos/'], { skipLocationChange: true });
   ngOnInit(): void {
+
+  }
+
+  ngAfterViewInit(): void {
+    //Called after every check of the component's view. Applies to components only.
+    //Add 'implements AfterViewChecked' to the class.
+    this.auth();
     this.feedVideoList();
+  }
+
+  private auth(): void {
     this.loginService.login().pipe().subscribe((response: any) => {
       const data = JSON.parse(JSON.stringify(response));
       this.token = data.token;
       sessionStorage.setItem('token', this.token);
-
     });
   }
 
   public feedVideoList(): void {
     this.loaded.next(false);
-    this.videosService.getVideos().subscribe((response: any) => {
+    this.videosService.getVideos().pipe().subscribe((response: any) => {
       response['data'].forEach((item: string) => this.videos.push(item));
       if (this.videos.length > 0) {
         this.loaded.next(true);
@@ -57,10 +71,19 @@ export class Container implements OnInit {
     });
   }
 
-  public getVideoById(id: string): void {
-    this.videosService.getVideoById(id, this.token).subscribe((response: any) => {
-      console.log(response);
-    });
+  public getVideoById(id: string): any {
+    if (this.src.value === 'http://0.0.0.0:3000/api/videos/') {
+      // this.url = this.sanitizer.sanitize(4, encodeURI(`http://0.0.0.0:3000/api/videos/${id}?authorization=Bearer ${this.token}`)) || '';
+      this.src.next(encodeURI(`http://0.0.0.0:3000/api/videos/${id}?authorization=Bearer ${this.token}`));
+
+      // console.log(this.src.value);
+      // console.log(this.player);
+      this.type = 'video/webm';
+    }
+  }
+
+  public log(event: any): void {
+    console.log(event.target);
   }
 
   switchTheme(event: any): void {

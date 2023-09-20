@@ -44,7 +44,7 @@ app.use(function (req, res, next) {
     res.header("Vary", "Origin");
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Methods", "GET, POST, HEAD, OPTIONS");
-    res.header("Access-Control-Expose-Headers");
+    // res.header("Access-Control-Expose-Headers", "Express");
     // res.header("Access-Control-Max-Age", "3600000");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     return next();

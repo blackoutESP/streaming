@@ -13,11 +13,10 @@
     </mat-slide-toggle>
   </div>
 </mat-toolbar>
-<main class="inline-content"
-  [ngClass]="{'dark-theme': themeSelected.value === 'dark', 'light-theme': themeSelected.value === 'light'}">
-  <section class="video">
-    <video autoplay buffered controls muted>
-      <source [src]="" type="video/webm">
+<main class="inline-content">
+  <section class="video" *ngIf="src.value">
+    <video id="player" #player autoplay buffered controls [src]="src.value">
+      <source type="'{{type}}'">
     </video>
   </section>
   <section class="list">
@@ -38,5 +37,7 @@
       </ng-container>
     </cdk-virtual-scroll-viewport>
   </section>
+  <span class="version-info">Current Version: {{version}}</span>
 </main>
+
 <router-outlet></router-outlet>
