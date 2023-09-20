@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { LoginService } from './services/login.service';
 import { VideosService } from './services/videos.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import packageJson from '../../package.json';
+import version from 'version';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +18,7 @@ export class Container implements OnInit {
   @Output() themeSelected: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
   @Output() checked: BehaviorSubject<boolean> = new BehaviorSubject(true);
   public title = 'Small Streaming Service';
-  public version: string = packageJson.version;
+  public version: string = version.front;
   public src: string = encodeURI(`http://0.0.0.0:3000/api/videos/`);
   public loaded: BehaviorSubject<boolean> = new BehaviorSubject(true);
   public videos: string[] = [];

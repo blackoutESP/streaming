@@ -11,7 +11,6 @@
     </mat-slide-toggle>
   </div>
 </mat-toolbar>
-<span class="version-info">Current build: {{ version }}</span>
 <main class="inline-content"
   [ngClass]="{'dark-theme': themeSelected.value === 'dark', 'light-theme': themeSelected.value === 'light'}">
   <section class="video" *ngIf="src">
@@ -38,5 +37,5 @@
     </cdk-virtual-scroll-viewport>
   </section>
 </main>
-
+<span class="version-info">Current build: {{ version }}</span>
 <router-outlet></router-outlet>
