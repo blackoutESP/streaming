@@ -18,7 +18,6 @@ export const getVideos = (request: Request, response: Response, next: NextFuncti
 
 export const getVideoById = (request: Request, response: Response, next: NextFunction) => {
     const id = request.params.id;
-    console.log(id);
     const assets = path.join(__dirname, '../assets');
     const filePath = path.join(assets, id);
     const size = fs.statSync(filePath).size;

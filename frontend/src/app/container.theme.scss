@@ -1,11 +1,3 @@
-@import "../custom-theme.scss";
-
-$primary: map-get($dark-theme, primary);
-
-$accent: map-get($dark-theme, accent);
-
-$warn: map-get($dark-theme, warn);
-
 .inline {
   display: grid;
   grid-template-rows: 100%;

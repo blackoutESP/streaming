@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Output, Sanitizer, Input } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
 import { VideosService } from 'src/app/services/videos.service';
@@ -21,6 +21,7 @@ export class StreamingComponent implements OnInit, OnDestroy {
   public version: string = packageJSON.version;
   public src: string = encodeURI(`http://0.0.0.0:3000/api/videos/`);
   public loaded: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public song: string = '';
   public videos: string[] = [];
   public type: string = '';
   private token: string = '';
@@ -29,7 +30,7 @@ export class StreamingComponent implements OnInit, OnDestroy {
   constructor(
     private overlayContainer: OverlayContainer,
     private router: Router,
-    private routerOutlet: RouterOutlet,
+    private activatedRoute: ActivatedRoute,
     private loginService: LoginService,
     private videosService: VideosService,
     private sanitizer: Sanitizer) {
@@ -40,10 +41,10 @@ export class StreamingComponent implements OnInit, OnDestroy {
     }
     this.overlay = this.overlayContainer.getContainerElement();
     this.router.navigate(['streaming'], { skipLocationChange: false });
-    console.log(this.version);
   }
 
   ngOnInit(): void {
+    console.log(this.loaded.value);
     this.feedVideoList();
   }
 
@@ -51,30 +52,31 @@ export class StreamingComponent implements OnInit, OnDestroy {
 
   }
 
-  private auth(): void {
-    this.loginService.login().pipe().subscribe((response: any) => {
-      const data = JSON.parse(JSON.stringify(response));
-      this.token = data.token;
-      sessionStorage.setItem('token', this.token);
-    });
-  }
-
   public feedVideoList(): void {
-    this.loaded.next(true);
+
     this.videosService.getVideos().pipe().subscribe((response: any) => {
       response['data'].forEach((item: string) => this.videos.push(item));
+      this.loaded.next(true);
       if (this.videos.length > 0) {
-        this.loaded.next(false);
+
       }
+      console.log(this.loaded.value);
     });
   }
 
   public getVideoById(id: string): any {
     console.log(id);
+    this.song = id;
     if (id) {
       // this.url = this.sanitizer.sanitize(4, encodeURI(`http://0.0.0.0:3000/api/videos/${id}?authorization=Bearer ${this.token}`)) || '';
-      this.src = encodeURI(`http://0.0.0.0:3000/api/videos/${id}?authorization=Bearer ${this.token}`);
-      this.type = 'video/webm';
+      this.src = `http://0.0.0.0:3000/api/videos/${id}?authorization=Bearer ${this.token}`;
+      this.router.navigate(
+        [],
+        {
+          relativeTo: this.activatedRoute,
+          queryParams: { query: encodeURI(`/videos/${id}?authorization=Bearer ${this.token}`) },
+          queryParamsHandling: 'merge'
+        });
     }
   }
 

@@ -1,4 +1,4 @@
-<mat-toolbar
+<mat-toolbar class="inline-toolbar"
   [ngClass]="{'dark-theme': themeSelected.value === 'dark-theme', 'light-theme': themeSelected.value === 'light-theme'}">
   <div class="inline title">
     <span class="material-symbols-outlined">cast_connected</span>
@@ -10,8 +10,8 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item>
         <mat-icon aria-hidden="false" aria-label="Palette Icon" fontIcon="palette"></mat-icon>
-        <mat-slide-toggle [hideIcon]="true" (checked)="checked" (change)="switchTheme($event)"
-          (toggleChange)="themeSelected">
+        <mat-slide-toggle [hideIcon]="true" (checked)="'{{checked | async}}'" (change)="switchTheme($event)"
+          (toggleChange)="themeSelected.value">
           {{ themeSelected | async }}
         </mat-slide-toggle>
       </button>
@@ -27,18 +27,20 @@
     <video buffered controls autoplay [src]="src">
       <source [type]="type">
     </video>
+    <span>{{song}}</span>
   </section>
   <section class="list">
     <cdk-virtual-scroll-viewport class="viewport">
       <ng-container>
         <mat-list>
           <ng-container>
-            <div class="spinner" *ngIf="loaded">
+            <div *ngIf="loaded.value === false" class="spinner">
               <mat-spinner [mode]="'indeterminate'"></mat-spinner>
             </div>
             <div class="mat-list-padding">
               <div class="loaded" *ngIf="loaded">
                 <mat-list-item id="item" *ngFor="let video of videos">
+                  <mat-icon aria-hidden="false" aria-label="Palette Icon" fontIcon="song"></mat-icon>
                   <a target="_self" (click)="getVideoById(video)">{{ video }}</a>
                 </mat-list-item>
               </div>
@@ -48,6 +50,5 @@
       </ng-container>
     </cdk-virtual-scroll-viewport>
   </section>
-
 </main>
 <span class="version">Current build: {{ version }}</span>

@@ -1,11 +1,3 @@
-@import "../../custom-theme.scss";
-
-$primary: map-get($dark-theme, primary);
-
-$accent: map-get($dark-theme, accent);
-
-$warn: map-get($dark-theme, warn);
-
 * {
   margin: 0;
   padding: 0;
@@ -25,17 +17,28 @@ $warn: map-get($dark-theme, warn);
   grid-area: icon;
 }
 
+.inline-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .inline {
   display: grid;
-  grid-template-columns: 80% 20%;
+  grid-template-columns: 60% 40%;
   grid-template-rows: 15% 70% auto;
   grid-template-areas: "icon title" "player videos";
-  border: 1px dotted rgb(86, 95, 105);
+  // border: 1px dotted rgb(86, 95, 105);
   width: 100%;
   height: 100%;
 }
 
 .title {
+  width: 100%;
   height: 3em;
   font-size: 1.2em;
   line-height: 1.2em;
@@ -43,19 +46,20 @@ $warn: map-get($dark-theme, warn);
   flex-direction: row;
   align-items: center;
   grid-area: title;
+  margin: 0;
 }
 
 .divider {
   width: 1em;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
+  margin-left: 1em;
+  margin-right: 1em;
   border: 0;
 }
 
 .palette {
   height: 3em;
+  line-height: 3em;
   font-size: 1.2em;
-  height: 3em;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -72,18 +76,33 @@ video {
   width: 720px;
 }
 
-// .spinner {
+.spinner {
+  display: inline-block;
+  visibility: visible;
+  padding: 2em;
+  width: auto;
+  height: auto;
+  color: #4c7684;
+  // border: 1px solid map-get($map: $dark-theme, $key: $warn);
 
-// }
+}
+
+.mdc-circular-progress__indeterminate-container {
+  display: inline-block;
+  visibility: visible;
+  padding: 2em;
+}
 
 .list {
   display: grid;
   grid-area: videos;
   height: 100%;
-  padding-inline: 1em .5em;
-  writing-mode: horizontal-tb;
+  width: 100%;
+  margin: auto;
+  padding-inline: 0;
+  writing-mode: sideways-lr;
   direction: ltr;
-  border: 1px dotted slategray;
+  overflow-y: hidden;
 }
 
 .list mat-list mat-list-item>a {
@@ -92,12 +111,18 @@ video {
   font-size: 1em;
   line-height: 1em;
   text-overflow: ellipsis;
-  // padding-inline: 1em .2em;
-  //writing-mode: sideways-rl;
-  // direction: rtl;
-  // margin-inline: 1em .2em;
-  //writing-mode: sideways-rl;
+  padding-inline: .5em .5em;
+  writing-mode: horizontal-tb;
+  direction: rtl;
+  margin-inline: .5em .5em;
+  writing-mode: sideways-lr;
   cursor: pointer;
+}
+
+.mat-mdc-list-item {
+  margin-bottom: .5em;
+  font-weight: 400;
+  color: #767b7d;
 }
 
 #item::after {
@@ -111,13 +136,19 @@ video {
 }
 
 .spinner {
-  width: 120px;
-  height: 120px;
-  color: #4c7684;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  padding: 2em;
 }
 
 .viewport {
   width: 100%;
+  margin: auto;
+  padding: 1em;
   height: 720px;
   min-height: 720px;
   overflow-y: scroll;
