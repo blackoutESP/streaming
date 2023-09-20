@@ -19,25 +19,26 @@ app.use(function (req: Request, res: Response, next: NextFunction) {
     res.header("Vary", "Origin");
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Methods", "GET, POST, HEAD, OPTIONS");
-    // Access-Control-Expose-Headers
-    // Access-Control-Max-Age
+    // res.header("Access-Control-Expose-Headers", "Express");
+    // res.header("Access-Control-Max-Age", "3600000");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     return next();
 });
 
 export const authMiddleware = async (request: Request, response: Response, next: NextFunction) => {
-    if (request.headers.authorization || request.query.authorization) {
+    console.log(request.url);
+    if ((request.headers.authorization || request.query.authorization) || !request.url.includes('http://0.0.0.0:3000/api/login')) { // || (!request.url.includes('http://localhost:4200/api/login') || !request.url.includes('http://localhost:4200/api/videos'))
         let bearer = request.headers.authorization || request.query.authorization;
         console.log('token: ', bearer);
         const secret: string = process.env.api_key!;
-        jwt.verify(request.headers.authorization?.split(' ')[1]!, secret, (error: any, decoded: any) => {
+        const token: string = request.headers.authorization?.split(' ')[1]!;
+        jwt.verify(token, secret, (error: any, decoded: any) => {
             if (error) {
                 console.error(error);
-                return next();
-                logger.logger.error({ error: 'Unauthorized access', status: 403, message: 'Forbidden access.' })
+                logger.error({ error: 'Unauthorized access', status: 403, message: 'Forbidden access.' })
             }
             console.log(decoded);
-            logger.logger.info({ error: 'Authorized access', status: 200, message: 'Authorized access.' });
+            logger.info({ error: 'Authorized access', status: 200, message: 'Authorized access.' });
             next();
         });
     } else {

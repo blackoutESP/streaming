@@ -1,26 +1,43 @@
-<mat-toolbar>
+<mat-toolbar [ngClass]="{'dark-theme': themeSelected.value === 'dark', 'light-theme': themeSelected.value === 'light'}">
   <div class="inline">
     <div class="material-symbols-outlined">Cast</div>
     <h3 class="title">Streaming Service</h3>
   </div>
   <mat-divider class="divider"></mat-divider>
-  <!-- <div class="palette">
-    <span class="material-symbols-outlined">
+  <div class="palette">
+    <div class="material-symbols-outlined">
       dark_mode
-    </span>
-    <mat-slide-toggle [hideIcon]="true" (checked)="checked" (change)="switchTheme($event)"
-      (toggleChange)="themeSelected">
+    </div>
+    <mat-slide-toggle (checked)="checked" (change)="switchTheme($event)" (toggleChange)="themeSelected">
       {{ themeSelected | async }}
     </mat-slide-toggle>
-  </div> -->
-</mat-toolbar>
-<main>
-  <div class="videoContainer">
-    <video autoplay buffered controls>
-      <source
-        src="http://0.0.0.0:3000/api/videos/Evanescence_Hi-Lo featuring Lindsey Stirling (Official Music Video).webm?authorization=Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiNGM0NDgxNTAtNjdiYy00NmNjLTgzMzQtZmFlZTU3MTNlY2IwIiwiaWF0IjoxNjk1MTM1ODk1LCJleHAiOjIyOTk5MzU4OTUsImF1ZCI6InVzZXJzIiwiaXNzIjoic21hbGwgc3RyZWFtaW5nIHNlcnZpY2UifQ.76CI_UzcbAVGXkEFeV37GwX2XetO4I9Mey2aN8V3BuQ_0IlqMM0LY0c43HcP5Q1e9eG4FotFvzlXgvSXu-edDA"
-        type="video/webm">
-    </video>
   </div>
+</mat-toolbar>
+<main class="inline-content">
+  <section class="video" *ngIf="src.value">
+    <video id="player" #player autoplay buffered controls [src]="src.value">
+      <source type="'{{type}}'">
+    </video>
+  </section>
+  <section class="list">
+    <cdk-virtual-scroll-viewport class="viewport">
+      <ng-container>
+        <mat-list>
+          <ng-container>
+            <div class="spinner" *ngIf="!loaded">
+              <mat-spinner [mode]="'indeterminate'" [color]="'primary'"></mat-spinner>
+            </div>
+            <div class="mat-list-padding" *ngIf="loaded">
+              <mat-list-item id="item" *ngFor="let video of videos">
+                <a target="_self" (click)="getVideoById(video)">{{ video }}</a>
+              </mat-list-item>
+            </div>
+          </ng-container>
+        </mat-list>
+      </ng-container>
+    </cdk-virtual-scroll-viewport>
+  </section>
+  <!-- <span class="version-info">Current Version: {{version}}</span> -->
 </main>
+
 <router-outlet></router-outlet>
