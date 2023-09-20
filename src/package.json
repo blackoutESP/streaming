@@ -1,6 +1,6 @@
 {
   "name": "streaming",
-  "version": "2.0-6",
+  "version": "2.0-7",
   "description": "Small Streaming Service",
   "main": "index.ts",
   "scripts": {
