@@ -38,7 +38,7 @@ export class Container implements OnInit, OnDestroy {
       this.mobile = false;
     }
     this.overlay = this.overlayContainer.getContainerElement();
-    // this.router.navigate(['videos'], { skipLocationChange: false });
+    this.router.navigate(['streaming'], { skipLocationChange: false });
   }
 
   ngOnInit(): void {
@@ -56,29 +56,6 @@ export class Container implements OnInit, OnDestroy {
       this.token = data.token;
       sessionStorage.setItem('token', this.token);
     });
-  }
-
-  public feedVideoList(): void {
-    this.loaded.next(false);
-    this.videosService.getVideos().pipe().subscribe((response: any) => {
-      response['data'].forEach((item: string) => this.videos.push(item));
-      if (this.videos.length > 0) {
-        this.loaded.next(true);
-      }
-    });
-  }
-
-  public getVideoById(id: string): any {
-    console.log(id);
-    if (id) {
-      // this.url = this.sanitizer.sanitize(4, encodeURI(`http://0.0.0.0:3000/api/videos/${id}?authorization=Bearer ${this.token}`)) || '';
-      this.src = encodeURI(`http://0.0.0.0:3000/api/videos/${id}?authorization=Bearer ${this.token}`);
-      this.type = 'video/webm';
-    }
-  }
-
-  public log(event: any): void {
-    console.log(event.target);
   }
 
   switchTheme(event: any): void {

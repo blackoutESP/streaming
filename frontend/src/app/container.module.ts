@@ -9,12 +9,10 @@ import { Container } from './container.component';
 import { CommonModule } from '@angular/common';
 import { AngularMaterialModule } from './angular-material-ui.module';
 import { VideosModule } from './videos/videos.module';
-import { VideosComponent } from './videos/videos.component';
 
 @NgModule({
   declarations: [
-    Container,
-    VideosComponent
+    Container
   ],
   imports: [
     CommonModule,
