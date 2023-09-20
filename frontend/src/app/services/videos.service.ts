@@ -7,7 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class VideosService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) {
+
+  }
 
   public getVideos(): Observable<any[]> {
     return this.http.get<object[]>('http://0.0.0.0:3000/api/videos', {

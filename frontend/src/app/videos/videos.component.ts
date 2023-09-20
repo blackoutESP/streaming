@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Output, Sanitizer, Input } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
 import { VideosService } from 'src/app/services/videos.service';
@@ -20,7 +20,7 @@ export class StreamingComponent implements OnInit, OnDestroy {
   public title = 'Small Streaming Service';
   public version: string = packageJSON.version;
   public src: string = encodeURI(`http://0.0.0.0:3000/api/videos/`);
-  public loaded: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public loaded: BehaviorSubject<boolean> = new BehaviorSubject(true);
   public videos: string[] = [];
   public type: string = '';
   private token: string = '';
@@ -29,7 +29,7 @@ export class StreamingComponent implements OnInit, OnDestroy {
   constructor(
     private overlayContainer: OverlayContainer,
     private router: Router,
-    private routerOutlet: RouterOutlet,
+    private activatedRoute: ActivatedRoute,
     private loginService: LoginService,
     private videosService: VideosService,
     private sanitizer: Sanitizer) {
@@ -73,8 +73,14 @@ export class StreamingComponent implements OnInit, OnDestroy {
     console.log(id);
     if (id) {
       // this.url = this.sanitizer.sanitize(4, encodeURI(`http://0.0.0.0:3000/api/videos/${id}?authorization=Bearer ${this.token}`)) || '';
-      this.src = encodeURI(`http://0.0.0.0:3000/api/videos/${id}?authorization=Bearer ${this.token}`);
-      this.type = 'video/webm';
+      this.src = `http://0.0.0.0:3000/api/videos/${id}?authorization=Bearer ${this.token}`;
+      this.router.navigate(
+        [],
+        {
+          relativeTo: this.activatedRoute,
+          queryParams: { query: `/api/videos/${id}?authorization=Bearer ${this.token}` },
+          queryParamsHandling: 'merge'
+        });
     }
   }
 
