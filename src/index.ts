@@ -5,6 +5,8 @@ import { logger } from './logger/logger.js';
 import { router } from './routes/index';
 import { generateToken } from './middlewares/jwt';
 
+import packageJson from './package.json';
+
 import * as dotenv from 'dotenv';
 // console.log(dotenv.configDotenv()); Show DotEnv config
 dotenv.config();
@@ -51,4 +53,5 @@ app.use('/api/videos', authMiddleware, router);
 
 http.createServer(app).listen(3000, () => {
     console.log(`server listening on port ${process.env.ip}:${process.env.port}`);
+    console.log(`current build: ${packageJson.version}`);
 });

@@ -1,6 +1,6 @@
 {
   "name": "streaming",
-  "version": "2.0.0",
+  "version": "2.0-6",
   "description": "Small Streaming Service",
   "main": "index.ts",
   "scripts": {
@@ -32,6 +32,7 @@
     "@types/formidable": "^3.4.3",
     "@types/jsonwebtoken": "^9.0.3",
     "dotenv": "^16.3.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "version": "^0.1.2"
   }
 }

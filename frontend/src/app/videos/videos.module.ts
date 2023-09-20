@@ -1,14 +1,15 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 
-import { VideosComponent } from './videos.component';
+import { StreamingComponent } from './videos.component';
 import { AngularMaterialModule } from '../angular-material-ui.module';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
-    VideosComponent
+    StreamingComponent
   ],
   imports: [
+    BrowserModule,
     AngularMaterialModule
   ],
   providers: [AngularMaterialModule],

@@ -17,6 +17,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -38,7 +39,9 @@ import { MatRadioModule } from '@angular/material/radio';
     MatSlideToggleModule,
     MatSliderModule,
     MatToolbarModule,
-    MatRadioModule
+    MatRadioModule,
+    MatGridListModule,
+    MatListModule
   ],
   exports: [
     MatAutocompleteModule,
@@ -57,7 +60,9 @@ import { MatRadioModule } from '@angular/material/radio';
     MatProgressSpinnerModule,
     MatSlideToggleModule,
     MatToolbarModule,
-    MatRadioModule
+    MatRadioModule,
+    MatGridListModule,
+    MatListModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
