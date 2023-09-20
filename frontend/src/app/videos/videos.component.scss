@@ -25,6 +25,16 @@ $warn: map-get($dark-theme, warn);
   grid-area: icon;
 }
 
+.inline-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .inline {
   display: grid;
   grid-template-columns: 60% 40%;
@@ -36,6 +46,7 @@ $warn: map-get($dark-theme, warn);
 }
 
 .title {
+  width: 100%;
   height: 3em;
   font-size: 1.2em;
   line-height: 1.2em;
@@ -43,6 +54,7 @@ $warn: map-get($dark-theme, warn);
   flex-direction: row;
   align-items: center;
   grid-area: title;
+  margin: 0;
 }
 
 .divider {
