@@ -34,10 +34,13 @@
       <ng-container>
         <mat-list>
           <ng-container>
-            <mat-spinner class="spinner" *ngIf="loaded" [mode]="'indeterminate'"></mat-spinner>
+            <div *ngIf="loaded.value === false" class="spinner">
+              <mat-spinner [mode]="'indeterminate'"></mat-spinner>
+            </div>
             <div class="mat-list-padding">
               <div class="loaded" *ngIf="loaded">
                 <mat-list-item id="item" *ngFor="let video of videos">
+                  <mat-icon aria-hidden="false" aria-label="Palette Icon" fontIcon="song"></mat-icon>
                   <a target="_self" (click)="getVideoById(video)">{{ video }}</a>
                 </mat-list-item>
               </div>

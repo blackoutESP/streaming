@@ -1,11 +1,3 @@
-@import "../../custom-theme.scss";
-
-$primary: map-get($map: $dark-theme, $key: primary);
-
-$accent: map-get($map: $dark-theme, $key: accent);
-
-$warn: map-get($map: $dark-theme, $key: warn);
-
 * {
   margin: 0;
   padding: 0;
@@ -90,7 +82,7 @@ video {
   padding: 2em;
   width: auto;
   height: auto;
-  color: map-get($map: $dark-theme, $key: $accent);
+  color: #4c7684;
   // border: 1px solid map-get($map: $dark-theme, $key: $warn);
 
 }
@@ -119,16 +111,16 @@ video {
   font-size: 1em;
   line-height: 1em;
   text-overflow: ellipsis;
-  padding-inline: 1em 1em;
+  padding-inline: .5em .5em;
   writing-mode: horizontal-tb;
   direction: rtl;
-  margin-inline: 1em 2em;
-  writing-mode: horizontal-tb;
+  margin-inline: .5em .5em;
+  writing-mode: sideways-lr;
   cursor: pointer;
 }
 
 .mat-mdc-list-item {
-  margin-bottom: 1.5em;
+  margin-bottom: .5em;
   font-weight: 400;
   color: #767b7d;
 }
@@ -144,9 +136,13 @@ video {
 }
 
 .spinner {
-  width: 120px;
-  height: 120px;
-  color: #4c7684;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  padding: 2em;
 }
 
 .viewport {

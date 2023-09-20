@@ -41,12 +41,11 @@ export class StreamingComponent implements OnInit, OnDestroy {
     }
     this.overlay = this.overlayContainer.getContainerElement();
     this.router.navigate(['streaming'], { skipLocationChange: false });
-    console.log(this.version);
   }
 
   ngOnInit(): void {
+    console.log(this.loaded.value);
     this.feedVideoList();
-    this.loaded.next(false);
   }
 
   ngOnDestroy(): void {
@@ -57,9 +56,11 @@ export class StreamingComponent implements OnInit, OnDestroy {
 
     this.videosService.getVideos().pipe().subscribe((response: any) => {
       response['data'].forEach((item: string) => this.videos.push(item));
+      this.loaded.next(true);
       if (this.videos.length > 0) {
 
       }
+      console.log(this.loaded.value);
     });
   }
 
@@ -73,7 +74,7 @@ export class StreamingComponent implements OnInit, OnDestroy {
         [],
         {
           relativeTo: this.activatedRoute,
-          queryParams: { query: `/api/videos/${id}?authorization=Bearer ${this.token}` },
+          queryParams: { query: encodeURI(`/videos/${id}?authorization=Bearer ${this.token}`) },
           queryParamsHandling: 'merge'
         });
     }
