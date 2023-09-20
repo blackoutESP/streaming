@@ -27,7 +27,7 @@ $warn: map-get($dark-theme, warn);
 
 .inline {
   display: grid;
-  grid-template-columns: 80% 20%;
+  grid-template-columns: 60% 40%;
   grid-template-rows: 15% 70% auto;
   grid-template-areas: "icon title" "player videos";
   border: 1px dotted rgb(86, 95, 105);
@@ -47,15 +47,15 @@ $warn: map-get($dark-theme, warn);
 
 .divider {
   width: 1em;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
+  margin-left: 1em;
+  margin-right: 1em;
   border: 0;
 }
 
 .palette {
   height: 3em;
+  line-height: 3em;
   font-size: 1.2em;
-  height: 3em;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -80,8 +80,9 @@ video {
   display: grid;
   grid-area: videos;
   height: 100%;
-  padding-inline: 1em .5em;
-  writing-mode: horizontal-tb;
+  margin: auto;
+  padding-inline: 0;
+  writing-mode: sideways-lr;
   direction: ltr;
   border: 1px dotted slategray;
 }
