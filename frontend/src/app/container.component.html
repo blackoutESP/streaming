@@ -14,9 +14,9 @@
   </div>
 </mat-toolbar>
 <main class="inline-content">
-  <section class="video" *ngIf="src.value">
-    <video id="player" #player autoplay buffered controls [src]="src.value">
-      <source type="'{{type}}'">
+  <section class="video" *ngIf="src">
+    <video id="player" buffered controls autoplay [src]="src">
+      <source [type]="type">
     </video>
   </section>
   <section class="list">

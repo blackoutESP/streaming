@@ -18,8 +18,7 @@ export class Container implements OnInit {
   @Input() public overlayTheme = new BehaviorSubject<string>('dark-theme');
   @Output() themeSelected: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
   @Output() checked: BehaviorSubject<boolean> = new BehaviorSubject(true);
-  @ViewChild('player', { static: true }) player!: ElementRef;
-  public src: BehaviorSubject<string> = new BehaviorSubject(encodeURI(`http://0.0.0.0:3000/api/videos/`));
+  public src: string = encodeURI(`http://0.0.0.0:3000/api/videos/`);
   public url: string = '';
   public loaded: BehaviorSubject<boolean> = new BehaviorSubject(true);
   public videos: string[] = [];
@@ -43,12 +42,6 @@ export class Container implements OnInit {
   }
 
   ngOnInit(): void {
-
-  }
-
-  ngAfterViewInit(): void {
-    //Called after every check of the component's view. Applies to components only.
-    //Add 'implements AfterViewChecked' to the class.
     this.auth();
     this.feedVideoList();
   }
@@ -72,12 +65,10 @@ export class Container implements OnInit {
   }
 
   public getVideoById(id: string): any {
-    if (this.src.value === 'http://0.0.0.0:3000/api/videos/') {
+    console.log(id);
+    if (id) {
       // this.url = this.sanitizer.sanitize(4, encodeURI(`http://0.0.0.0:3000/api/videos/${id}?authorization=Bearer ${this.token}`)) || '';
-      this.src.next(encodeURI(`http://0.0.0.0:3000/api/videos/${id}?authorization=Bearer ${this.token}`));
-
-      // console.log(this.src.value);
-      // console.log(this.player);
+      this.src = encodeURI(`http://0.0.0.0:3000/api/videos/${id}?authorization=Bearer ${this.token}`);
       this.type = 'video/webm';
     }
   }
