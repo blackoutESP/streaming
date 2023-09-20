@@ -203,9 +203,9 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/material@^16.2.1":
+"@angular/material@^16.2.4":
   version "16.2.4"
-  resolved "https://registry.npmjs.org/@angular/material/-/material-16.2.4.tgz"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-16.2.4.tgz#8325c79799910190c02c5874cac9061246728604"
   integrity sha512-TIZ/0MKObn5YU9n/VReghJJKqgkqyzrWVNEJ8UgOP6MV5o+kAbqLSmlDJEyjLIwJF0vPnJ3UP6qbEOfEi1OLaA==
   dependencies:
     "@material/animation" "15.0.0-canary.bc9ae6c9c.0"

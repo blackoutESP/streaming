@@ -1,10 +1,10 @@
 @import "../../custom-theme.scss";
 
-$primary: map-get($dark-theme, primary);
+$primary: map-get($map: $dark-theme, $key: primary);
 
-$accent: map-get($dark-theme, accent);
+$accent: map-get($map: $dark-theme, $key: accent);
 
-$warn: map-get($dark-theme, warn);
+$warn: map-get($map: $dark-theme, $key: warn);
 
 * {
   margin: 0;
@@ -40,7 +40,7 @@ $warn: map-get($dark-theme, warn);
   grid-template-columns: 60% 40%;
   grid-template-rows: 15% 70% auto;
   grid-template-areas: "icon title" "player videos";
-  border: 1px dotted rgb(86, 95, 105);
+  // border: 1px dotted rgb(86, 95, 105);
   width: 100%;
   height: 100%;
 }
@@ -84,19 +84,33 @@ video {
   width: 720px;
 }
 
-// .spinner {
+.spinner {
+  display: inline-block;
+  visibility: visible;
+  padding: 2em;
+  width: auto;
+  height: auto;
+  color: map-get($map: $dark-theme, $key: $accent);
+  // border: 1px solid map-get($map: $dark-theme, $key: $warn);
 
-// }
+}
+
+.mdc-circular-progress__indeterminate-container {
+  display: inline-block;
+  visibility: visible;
+  padding: 2em;
+}
 
 .list {
   display: grid;
   grid-area: videos;
   height: 100%;
+  width: 100%;
   margin: auto;
   padding-inline: 0;
   writing-mode: sideways-lr;
   direction: ltr;
-  border: 1px dotted slategray;
+  overflow-y: hidden;
 }
 
 .list mat-list mat-list-item>a {
@@ -105,12 +119,18 @@ video {
   font-size: 1em;
   line-height: 1em;
   text-overflow: ellipsis;
-  // padding-inline: 1em .2em;
-  //writing-mode: sideways-rl;
-  // direction: rtl;
-  // margin-inline: 1em .2em;
-  //writing-mode: sideways-rl;
+  padding-inline: 1em 1em;
+  writing-mode: horizontal-tb;
+  direction: rtl;
+  margin-inline: 1em 2em;
+  writing-mode: horizontal-tb;
   cursor: pointer;
+}
+
+.mat-mdc-list-item {
+  margin-bottom: 1.5em;
+  font-weight: 400;
+  color: #767b7d;
 }
 
 #item::after {
@@ -131,6 +151,8 @@ video {
 
 .viewport {
   width: 100%;
+  margin: auto;
+  padding: 1em;
   height: 720px;
   min-height: 720px;
   overflow-y: scroll;

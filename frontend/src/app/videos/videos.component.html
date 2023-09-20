@@ -27,15 +27,14 @@
     <video buffered controls autoplay [src]="src">
       <source [type]="type">
     </video>
+    <span>{{song}}</span>
   </section>
   <section class="list">
     <cdk-virtual-scroll-viewport class="viewport">
       <ng-container>
         <mat-list>
           <ng-container>
-            <div class="spinner" *ngIf="loaded">
-              <mat-spinner [mode]="'indeterminate'"></mat-spinner>
-            </div>
+            <mat-spinner class="spinner" *ngIf="loaded" [mode]="'indeterminate'"></mat-spinner>
             <div class="mat-list-padding">
               <div class="loaded" *ngIf="loaded">
                 <mat-list-item id="item" *ngFor="let video of videos">
@@ -48,6 +47,5 @@
       </ng-container>
     </cdk-virtual-scroll-viewport>
   </section>
-
 </main>
 <span class="version">Current build: {{ version }}</span>
