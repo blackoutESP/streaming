@@ -15,4 +15,4 @@ import { BrowserModule } from '@angular/platform-browser';
   providers: [AngularMaterialModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class VideosModule { }
+export class StreamingModule { }

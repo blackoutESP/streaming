@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, Output, Sanitizer } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Output, Sanitizer, ViewEncapsulation } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { LoginService } from './services/login.service';
@@ -9,7 +9,8 @@ import packageJSON from '../../package.json';
 @Component({
   selector: 'app-root',
   templateUrl: './container.component.html',
-  styleUrls: ['./container.theme.scss']
+  styleUrls: ['./container.theme.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class Container implements OnInit, OnDestroy {
 

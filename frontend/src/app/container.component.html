@@ -1,1 +1,25 @@
+<mat-toolbar class="mat-app-background inline-toolbar"
+  [ngClass]="{'dark-theme': themeSelected.value === 'dark-theme', 'light-theme': themeSelected.value === 'light-theme'}">
+  <div class="inline title">
+    <span class="material-symbols-outlined">cast_connected</span>
+    <h3 class="title">Streaming Service</h3>
+  </div>
+  <mat-divider class="divider"></mat-divider>
+  <div class="inline palette">
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon aria-hidden="false" aria-label="Palette Icon" fontIcon="palette"></mat-icon>
+        <mat-slide-toggle [hideIcon]="true" (checked)="'{{checked | async}}'" (change)="switchTheme($event)"
+          (toggleChange)="themeSelected.value">
+          {{ themeSelected | async }}
+        </mat-slide-toggle>
+      </button>
+      <button mat-menu-item>
+        <mat-icon aria-hidden="false" aria-label="Person Icon" fontIcon="person"></mat-icon>
+        Account Settings...
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
 <router-outlet></router-outlet>

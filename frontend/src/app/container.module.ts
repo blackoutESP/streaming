@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Container } from './container.component';
 import { CommonModule } from '@angular/common';
 import { AngularMaterialModule } from './angular-material-ui.module';
-import { VideosModule } from './videos/videos.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,6 @@ import { VideosModule } from './videos/videos.module';
     RouterOutlet,
     ContainerRoutingModule,
     AngularMaterialModule,
-    VideosModule
   ],
   providers: [AngularMaterialModule],
   bootstrap: [Container],

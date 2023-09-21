@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Output, Sanitizer, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, Sanitizer, Input, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
@@ -9,7 +9,8 @@ import packageJSON from '../../../package.json';
 @Component({
   selector: 'streaming',
   templateUrl: './videos.component.html',
-  styleUrls: ['./videos.component.scss']
+  styleUrls: ['./videos.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class StreamingComponent implements OnInit, OnDestroy {
 
