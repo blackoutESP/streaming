@@ -41,11 +41,9 @@ export class StreamingComponent implements OnInit, OnDestroy {
     }
     this.overlay = this.overlayContainer.getContainerElement();
     this.router.navigate(['streaming'], { skipLocationChange: false });
-    this.overlayTheme.subscribe(val => console.log(val));
   }
 
   ngOnInit(): void {
-    console.log(this.loaded.value);
     this.feedVideoList();
   }
 

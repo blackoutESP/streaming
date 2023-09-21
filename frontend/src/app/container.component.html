@@ -1,9 +1,9 @@
-<mat-toolbar (overlayTheme)="switchTheme($event)" class="mat-app-background dark-theme inline-toolbar">
+<mat-toolbar (overlayTheme)="switchTheme($event)" class="inline-toolbar mat-app-background dark-theme">
   <div class="inline title">
     <span class="material-symbols-outlined">cast_connected</span>
     <h3 class="title">Streaming Service</h3>
   </div>
-  <mat-divider class="divider"></mat-divider>
+  <!-- <mat-divider class="divider"></mat-divider> -->
   <div class="palette">
     <button mat-button [matMenuTriggerFor]="menu">Menu</button>
     <mat-menu #menu="matMenu">

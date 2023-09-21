@@ -18,7 +18,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatListModule } from '@angular/material/list';
-
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   imports: [
@@ -41,7 +41,8 @@ import { MatListModule } from '@angular/material/list';
     MatToolbarModule,
     MatRadioModule,
     MatGridListModule,
-    MatListModule
+    MatListModule,
+    MatExpansionModule
   ],
   exports: [
     MatAutocompleteModule,
@@ -62,7 +63,8 @@ import { MatListModule } from '@angular/material/list';
     MatToolbarModule,
     MatRadioModule,
     MatGridListModule,
-    MatListModule
+    MatListModule,
+    MatExpansionModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

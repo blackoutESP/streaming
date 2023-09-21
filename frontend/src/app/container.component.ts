@@ -40,7 +40,6 @@ export class Container implements OnInit, OnDestroy {
     }
     this.overlay = this.overlayContainer.getContainerElement();
     this.router.navigate(['streaming'], { skipLocationChange: false });
-    this.overlayTheme.subscribe(val => console.log(val));
   }
 
   ngOnInit(): void {
@@ -61,12 +60,14 @@ export class Container implements OnInit, OnDestroy {
   }
 
   switchTheme(event: any): void {
+    console.log(event);
     if (!event.checked) { // Dark theme
       this.overlay.classList.remove('light-theme');
       this.overlay.classList.add('dark-theme');
       this.overlayTheme.next('dark-theme');
       this.themeSelected.next('dark-theme');
       this.checked.next(true);
+      console.log(this.overlay);
     } else { // Light theme
       this.overlay.classList.remove('dark-theme');
       this.overlay.classList.add('light-theme');
