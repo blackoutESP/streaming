@@ -9,15 +9,15 @@ import packageJSON from '../../../package.json';
 @Component({
   selector: 'app-streaming',
   templateUrl: './videos.component.html',
-  styleUrls: ['./videos.component.scss', '../../custom-theme.scss'],
+  styleUrls: ['./videos.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class StreamingComponent implements OnInit, OnDestroy {
 
   private overlay: any;
-  @Input() overlayTheme: BehaviorSubject<string> = new BehaviorSubject('');
-  @Output() themeSelected: BehaviorSubject<string> = new BehaviorSubject('Dark');
-  @Output() checked: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  @Input() overlayTheme: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
+  @Input() themeSelected: BehaviorSubject<string> = new BehaviorSubject('Dark');
+  @Input() checked: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public title = 'Small Streaming Service';
   public version: string = packageJSON.version;
   public src: string = encodeURI(`http://0.0.0.0:3000/api/videos/`);
@@ -60,7 +60,7 @@ export class StreamingComponent implements OnInit, OnDestroy {
       if (this.videos.length > 0) {
 
       }
-      console.log(this.loaded.value);
+
     });
   }
 
@@ -81,10 +81,11 @@ export class StreamingComponent implements OnInit, OnDestroy {
   }
 
   public switchTheme(event: any): void {
+    console.log(event);
+    console.log(this.overlay.value);
     if (!event.checked) { // dark theme
       this.overlay.classList.remove('light-theme');
       this.overlay.classList.add('dark-theme');
-      this.overlay.classList.add('light-theme');
       this.overlayTheme.next('dark-theme');
       this.themeSelected.next('Dark');
       this.checked.next(true);
@@ -96,5 +97,6 @@ export class StreamingComponent implements OnInit, OnDestroy {
       this.themeSelected.next('Light');
       this.checked.next(false);
     }
+    console.log(this.overlay);
   }
 }

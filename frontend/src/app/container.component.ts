@@ -9,7 +9,7 @@ import packageJSON from '../../package.json';
 @Component({
   selector: 'app-root',
   templateUrl: './container.component.html',
-  styleUrls: ['./container.theme.scss', '../custom-theme.scss'],
+  styleUrls: ['./container.theme.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class Container implements OnInit, OnDestroy {
@@ -60,8 +60,6 @@ export class Container implements OnInit, OnDestroy {
   }
 
   switchTheme(event: any): void {
-    console.log(event);
-    console.log(this.overlay);
     if (!event.checked) { // Dark theme
       this.overlay.classList.remove('light-theme');
       this.overlay.classList.add('dark-theme');
