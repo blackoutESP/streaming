@@ -11,9 +11,8 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item>
         <mat-icon aria-hidden="false" aria-label="Palette Icon" fontIcon="palette"></mat-icon>
-        <mat-slide-toggle [hideIcon]="true" [checked]="'{{checked.value | async === true}}'"
-          (change)="switchTheme($event)" (toggleChange)="'{{themeSelected | async}}'"
-          (click)="$event.stopPropagation()">
+        <mat-slide-toggle [hideIcon]="true" [checked]="'{{checked.value | async}}'" (change)="switchTheme($event)"
+          (toggleChange)="'{{themeSelected | async}}'">
           {{ themeSelected | async }}
         </mat-slide-toggle>
       </button>

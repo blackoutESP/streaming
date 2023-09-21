@@ -3,11 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
 import { VideosService } from 'src/app/services/videos.service';
-import { OverlayContainer } from '@angular/cdk/overlay';
 import packageJSON from '../../../package.json';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Component({
-  selector: 'streaming',
+  selector: '<app-streaming (overlayTheme)="switchTheme(overlayTheme);"></app-streaming>',
   templateUrl: './videos.component.html',
   styleUrls: ['./videos.component.scss'],
   encapsulation: ViewEncapsulation.None
@@ -15,11 +15,7 @@ import packageJSON from '../../../package.json';
 export class StreamingComponent implements OnInit, OnDestroy {
 
   public overlay: any;
-  @Input() overlayTheme: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
-  @Input() set setOverlay(theme: string) {
-    console.log(theme);
-    this.themeSelected.next(theme);
-  }
+  @Output() overlayTheme: BehaviorSubject<string> = new BehaviorSubject('light-theme');
   @Input() themeSelected: BehaviorSubject<string> = new BehaviorSubject('Dark');
   @Input() checked: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public title = 'Small Streaming Service';
@@ -45,7 +41,6 @@ export class StreamingComponent implements OnInit, OnDestroy {
       this.mobile = false;
     }
     this.overlay = this.overlayContainer.getContainerElement();
-    console.log(this.overlay);
     this.router.navigate(['streaming'], { skipLocationChange: false });
   }
 
@@ -69,6 +64,10 @@ export class StreamingComponent implements OnInit, OnDestroy {
     });
   }
 
+  public log(info: any) {
+    console.log(info);
+  }
+
   public getVideoById(id: string): any {
     console.log(id);
     this.song = id;
@@ -86,8 +85,6 @@ export class StreamingComponent implements OnInit, OnDestroy {
   }
 
   public switchTheme(event: any): void {
-    console.log(event);
-    console.log(this.overlay);
     if (!event.checked) { // dark theme
       this.overlay.classList.remove('light-theme');
       this.overlay.classList.add('dark-theme');
