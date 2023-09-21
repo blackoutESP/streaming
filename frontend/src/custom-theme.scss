@@ -19,14 +19,19 @@ $light-theme: mat.define-light-theme((color: (primary: mat.define-palette(mat.$i
 
 // Apply the dark theme by default
 
-@include mat.core-theme($dark-theme);
-@include mat.button-theme($dark-theme);
-
-.light-theme {
-  @include mat.core-theme($light-theme);
-  @include mat.button-theme($light-theme);
+.dark-theme {
+  @mixin dark {
+    @include mat.core-theme($dark-theme);
+    @include mat.button-theme($dark-theme);
+  }
 }
 
+.light-theme {
+  @mixin light {
+    @include mat.core-theme($light-theme);
+    @include mat.button-theme($light-theme);
+  }
+}
 
 // Apply the light theme only when the user prefers light themes.
 @media (prefers-color-scheme: dark) {
@@ -35,14 +40,3 @@ $light-theme: mat.define-light-theme((color: (primary: mat.define-palette(mat.$i
   @include mat.core-theme($dark-theme);
   @include mat.button-theme($dark-theme);
 }
-
-//.light-theme {
-// Apply the dark theme by default
-//@include mat.core-theme($light-theme);
-//@include mat.button-theme($light-theme);
-
-// Apply the light theme only when the user prefers light themes.
-// @media (prefers-color-scheme: light) {
-// Use the `-color` mixins to only apply color styles without reapplying the same
-// typography and density styles.
-//}

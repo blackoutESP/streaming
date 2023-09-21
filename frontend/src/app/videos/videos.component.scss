@@ -20,7 +20,7 @@
 .inline {
   display: grid;
   grid-template-columns: 60% 40%;
-  grid-template-rows: 15% 70% auto;
+  grid-template-rows: 5% 90% 5%;
   grid-template-areas: "icon title" "player videos";
   // border: 1px dotted rgb(86, 95, 105);
   width: 100%;
@@ -62,8 +62,8 @@
 }
 
 video {
-  height: 480px;
-  width: 720px;
+  height: 720px;
+  width: 1280px;
 }
 
 .spinner {
@@ -168,6 +168,6 @@ video {
   display: flex;
   flex-direction: row;
   position: absolute;
-  top: 96%;
-  left: 1%;
+  top: 97%;
+  left: 90%;
 }
