@@ -9,7 +9,8 @@ import packageJSON from '../../../package.json';
 @Component({
   selector: 'app-streaming',
   templateUrl: './videos.component.html',
-  styleUrls: ['./videos.component.scss', '../../custom-theme.scss']
+  styleUrls: ['./videos.component.scss', '../../custom-theme.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class StreamingComponent implements OnInit, OnDestroy {
 
@@ -80,12 +81,9 @@ export class StreamingComponent implements OnInit, OnDestroy {
   }
 
   public switchTheme(event: any): void {
-    console.log(event.checked);
-    console.log(this.overlayContainer.getContainerElement().classList.contains('light-theme'));
     if (!event.checked) { // dark theme
       this.overlay.classList.remove('light-theme');
       this.overlay.classList.add('dark-theme');
-      this.overlayContainer.getContainerElement().classList.add('dark-theme');
       this.overlay.classList.add('light-theme');
       this.overlayTheme.next('dark-theme');
       this.themeSelected.next('Dark');

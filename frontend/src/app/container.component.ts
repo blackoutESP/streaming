@@ -16,8 +16,8 @@ export class Container implements OnInit, OnDestroy {
 
   private overlay: any;
   @Output() public overlayTheme = new BehaviorSubject<string>('dark-theme');
-  @Output() themeSelected: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
-  @Output() checked: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  @Output() public themeSelected: BehaviorSubject<string> = new BehaviorSubject('Dark');
+  @Output() public checked: BehaviorSubject<boolean> = new BehaviorSubject(true);
   public title = 'Small Streaming Service';
   public version: string = packageJSON.version;
   public src: string = encodeURI(`http://0.0.0.0:3000/api/videos/`);
@@ -61,18 +61,18 @@ export class Container implements OnInit, OnDestroy {
 
   switchTheme(event: any): void {
     console.log(event);
+    console.log(this.overlay);
     if (!event.checked) { // Dark theme
       this.overlay.classList.remove('light-theme');
       this.overlay.classList.add('dark-theme');
       this.overlayTheme.next('dark-theme');
-      this.themeSelected.next('dark-theme');
+      this.themeSelected.next('Dark');
       this.checked.next(true);
-      console.log(this.overlay);
     } else { // Light theme
       this.overlay.classList.remove('dark-theme');
       this.overlay.classList.add('light-theme');
       this.overlayTheme.next('light-theme');
-      this.themeSelected.next('light-theme');
+      this.themeSelected.next('Light');
       this.checked.next(false);
     }
   }

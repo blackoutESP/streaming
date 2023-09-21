@@ -1,4 +1,4 @@
-<mat-toolbar (overlayTheme)="switchTheme($event)" class="inline-toolbar mat-app-background dark-theme">
+<mat-toolbar class="inline-toolbar">
   <div class="inline title">
     <span class="material-symbols-outlined">cast_connected</span>
     <h3 class="title">Streaming Service</h3>
@@ -9,8 +9,8 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item>
         <mat-icon aria-hidden="false" aria-label="Palette Icon" fontIcon="palette"></mat-icon>
-        <mat-slide-toggle [hideIcon]="true" (checked)="'{{checked | async}}'" (change)="switchTheme($event)"
-          (toggleChange)="themeSelected.value" (overlayTheme)="switchTheme($event)">
+        <mat-slide-toggle [hideIcon]="true" [checked]="'{{checked.value | async}}'" (change)="switchTheme($event)"
+          (toggleChange)="'{{themeSelected | async}}'" (click)="$event.stopPropagation()">
           {{ themeSelected | async }}
         </mat-slide-toggle>
       </button>

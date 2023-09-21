@@ -5,32 +5,20 @@
 // Define a dark theme
 $dark-theme: mat.define-dark-theme((color: (primary: mat.define-palette(mat.$gray-palette),
         accent: mat.define-palette(mat.$blue-grey-palette),
-        warn: mat.define-palette(mat.$teal-palette)),
-      // Only include `typography` and `density` in the default dark theme.
-      typography: mat.define-typography-config(),
-      density: 0,
-    ));
+        warn: mat.define-palette(mat.$teal-palette)), typography: mat.define-typography-config(), density: 0));
 
 // Define a light theme
 $light-theme: mat.define-light-theme((color: (primary: mat.define-palette(mat.$indigo-palette),
         accent: mat.define-palette(mat.$pink-palette),
-        warn: mat.define-palette(mat.$teal-palette)), // Only include `typography` and `density` in the default dark theme.
-    ));
+        warn: mat.define-palette(mat.$teal-palette))));
 
 // Apply the dark theme by default
 
-.dark-theme {
-  @mixin dark-theme {
-    @include mat.core-theme($dark-theme);
-    @include mat.button-theme($dark-theme);
-  }
-}
+@include mat.all-component-themes($dark-theme);
+@include mat.all-component-colors($dark-theme);
 
 .light-theme {
-  @mixin light-theme {
-    @include mat.core-theme($light-theme);
-    @include mat.button-theme($light-theme);
-  }
+  @include mat.all-component-colors($light-theme);
 }
 
 // Apply the light theme only when the user prefers light themes.
