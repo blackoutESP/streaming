@@ -14,8 +14,12 @@ import packageJSON from '../../../package.json';
 })
 export class StreamingComponent implements OnInit, OnDestroy {
 
-  private overlay: any;
+  public overlay: any;
   @Input() overlayTheme: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
+  @Input() set setOverlay(theme: string) {
+    console.log(theme);
+    this.themeSelected.next(theme);
+  }
   @Input() themeSelected: BehaviorSubject<string> = new BehaviorSubject('Dark');
   @Input() checked: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public title = 'Small Streaming Service';
@@ -41,9 +45,6 @@ export class StreamingComponent implements OnInit, OnDestroy {
       this.mobile = false;
     }
     this.overlay = this.overlayContainer.getContainerElement();
-
-    this.overlay.classList.remove('dark-theme');
-    this.overlay.classList.add('light-theme');
     console.log(this.overlay);
     this.router.navigate(['streaming'], { skipLocationChange: false });
   }
@@ -96,7 +97,6 @@ export class StreamingComponent implements OnInit, OnDestroy {
     } else { // Light theme
       this.overlay.classList.remove('dark-theme');
       this.overlay.classList.add('light-theme');
-      this.overlayContainer.getContainerElement().classList.add('light-theme');
       this.overlayTheme.next('light-theme');
       this.themeSelected.next('Light');
       this.checked.next(false);

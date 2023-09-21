@@ -9,8 +9,7 @@
   </section>
   <section class="list"
     [ngClass]="{'dark-theme': (themeSelected | async) === 'Dark', 'light-theme': ( themeSelected | async) === 'Light'}">
-    <cdk-virtual-scroll-viewport class="viewport"
-      [ngClass]="{'dark-theme': (themeSelected | async) === 'Dark', 'light-theme': ( themeSelected | async) === 'Light'}">
+    <cdk-virtual-scroll-viewport class="viewport">
       <ng-container>
         <mat-list>
           <ng-container>
@@ -21,7 +20,8 @@
               <div class="loaded" *ngIf="loaded">
                 <mat-list-item id="item" *ngFor="let video of videos">
                   <!-- <mat-icon aria-hidden="false" aria-label="Palette Icon" fontIcon="lyrics"></mat-icon> -->
-                  <a target="_self" (click)="getVideoById(video)">{{ video
+                  <a target="_self" (click)="getVideoById(video)">{{
+                    video
                     }}</a>
                 </mat-list-item>
               </div>
@@ -31,5 +31,7 @@
       </ng-container>
     </cdk-virtual-scroll-viewport>
   </section>
-  <span class="version">Current build: {{ version }}</span>
+  <span
+    [ngClass]="{'dark-theme': (themeSelected | async) === 'Dark', 'light-theme': ( themeSelected | async) === 'Light'}"
+    class="version">Current build: {{ version }}</span>
 </main>
