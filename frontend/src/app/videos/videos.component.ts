@@ -7,7 +7,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import packageJSON from '../../../package.json';
 
 @Component({
-  selector: 'app-streaming',
+  selector: 'streaming',
   templateUrl: './videos.component.html',
   styleUrls: ['./videos.component.scss'],
   encapsulation: ViewEncapsulation.None
@@ -41,6 +41,10 @@ export class StreamingComponent implements OnInit, OnDestroy {
       this.mobile = false;
     }
     this.overlay = this.overlayContainer.getContainerElement();
+
+    this.overlay.classList.remove('dark-theme');
+    this.overlay.classList.add('light-theme');
+    console.log(this.overlay);
     this.router.navigate(['streaming'], { skipLocationChange: false });
   }
 
@@ -82,7 +86,7 @@ export class StreamingComponent implements OnInit, OnDestroy {
 
   public switchTheme(event: any): void {
     console.log(event);
-    console.log(this.overlay.value);
+    console.log(this.overlay);
     if (!event.checked) { // dark theme
       this.overlay.classList.remove('light-theme');
       this.overlay.classList.add('dark-theme');
@@ -97,6 +101,5 @@ export class StreamingComponent implements OnInit, OnDestroy {
       this.themeSelected.next('Light');
       this.checked.next(false);
     }
-    console.log(this.overlay);
   }
 }

@@ -1,3 +1,7 @@
+@import "../custom-theme.scss";
+@include light-theme;
+@include colors;
+
 .inline-toolbar {
   display: grid;
   grid-template-rows: 100%;
@@ -35,7 +39,7 @@
   height: 1em;
   margin: auto;
   height: 1em;
-  border: 1px solid #3c423c;
+  border: 1px solid primary;
 }
 
 .palette {

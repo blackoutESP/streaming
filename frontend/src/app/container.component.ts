@@ -1,5 +1,5 @@
-import { Component, Input, OnDestroy, OnInit, Output, Sanitizer, ViewEncapsulation } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Component, OnDestroy, OnInit, Output, Sanitizer, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { LoginService } from './services/login.service';
 import { VideosService } from './services/videos.service';

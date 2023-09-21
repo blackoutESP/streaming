@@ -13,18 +13,33 @@ $light-theme: mat.define-light-theme((color: (primary: mat.define-palette(mat.$i
         warn: mat.define-palette(mat.$teal-palette))));
 
 // Apply the dark theme by default
-
 @include mat.all-component-themes($dark-theme);
-@include mat.all-component-colors($dark-theme);
 
-.light-theme {
-  @include mat.all-component-colors($light-theme);
+@mixin light-theme {
+  .light-theme {
+    @include mat.all-component-themes($light-theme);
+    @include mat.all-component-colors($light-theme);
+  }
 }
 
-// Apply the light theme only when the user prefers light themes.
+@mixin colors {
+  .primary {
+    color: primary;
+  }
+
+  .accent {
+    color: accent;
+  }
+
+  .warn {
+    color: warn;
+  }
+}
+
+// // Apply the light theme only when the user prefers light themes.
 @media (prefers-color-scheme: dark) {
   // Use the `-color` mixins to only apply color styles without reapplying the same
   // typography and density styles.
-  @include mat.core-theme($dark-theme);
-  @include mat.button-theme($dark-theme);
+  @include mat.all-component-themes($dark-theme);
+  @include mat.all-component-colors($dark-theme);
 }
