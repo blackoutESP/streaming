@@ -7,15 +7,14 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import packageJSON from '../../../package.json';
 
 @Component({
-  selector: 'streaming',
+  selector: 'app-streaming',
   templateUrl: './videos.component.html',
-  styleUrls: ['./videos.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./videos.component.scss', '../../custom-theme.scss']
 })
 export class StreamingComponent implements OnInit, OnDestroy {
 
   private overlay: any;
-  @Input() public overlayTheme = new BehaviorSubject<string>('dark-theme');
+  @Input() overlayTheme: BehaviorSubject<string> = new BehaviorSubject('');
   @Output() themeSelected: BehaviorSubject<string> = new BehaviorSubject('Dark');
   @Output() checked: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public title = 'Small Streaming Service';
@@ -42,6 +41,7 @@ export class StreamingComponent implements OnInit, OnDestroy {
     }
     this.overlay = this.overlayContainer.getContainerElement();
     this.router.navigate(['streaming'], { skipLocationChange: false });
+    this.overlayTheme.subscribe(val => console.log(val));
   }
 
   ngOnInit(): void {
@@ -81,17 +81,21 @@ export class StreamingComponent implements OnInit, OnDestroy {
     }
   }
 
-  switchTheme(event: any): void {
+  public switchTheme(event: any): void {
     console.log(event.checked);
+    console.log(this.overlayContainer.getContainerElement().classList.contains('light-theme'));
     if (!event.checked) { // dark theme
       this.overlay.classList.remove('light-theme');
       this.overlay.classList.add('dark-theme');
+      this.overlayContainer.getContainerElement().classList.add('dark-theme');
+      this.overlay.classList.add('light-theme');
       this.overlayTheme.next('dark-theme');
       this.themeSelected.next('Dark');
       this.checked.next(true);
     } else { // Light theme
       this.overlay.classList.remove('dark-theme');
       this.overlay.classList.add('light-theme');
+      this.overlayContainer.getContainerElement().classList.add('light-theme');
       this.overlayTheme.next('light-theme');
       this.themeSelected.next('Light');
       this.checked.next(false);

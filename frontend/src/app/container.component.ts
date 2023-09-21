@@ -9,13 +9,13 @@ import packageJSON from '../../package.json';
 @Component({
   selector: 'app-root',
   templateUrl: './container.component.html',
-  styleUrls: ['./container.theme.scss'],
+  styleUrls: ['./container.theme.scss', '../custom-theme.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class Container implements OnInit, OnDestroy {
 
   private overlay: any;
-  @Input() public overlayTheme = new BehaviorSubject<string>('dark-theme');
+  @Output() public overlayTheme = new BehaviorSubject<string>('dark-theme');
   @Output() themeSelected: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
   @Output() checked: BehaviorSubject<boolean> = new BehaviorSubject(true);
   public title = 'Small Streaming Service';
@@ -40,6 +40,7 @@ export class Container implements OnInit, OnDestroy {
     }
     this.overlay = this.overlayContainer.getContainerElement();
     this.router.navigate(['streaming'], { skipLocationChange: false });
+    this.overlayTheme.subscribe(val => console.log(val));
   }
 
   ngOnInit(): void {
