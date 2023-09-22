@@ -43,7 +43,6 @@ const getVideos = (request, response, next) => {
 exports.getVideos = getVideos;
 const getVideoById = (request, response, next) => {
     const id = request.params.id;
-    console.log(id);
     const assets = path.join(__dirname, '../assets');
     const filePath = path.join(assets, id);
     const size = fs.statSync(filePath).size;

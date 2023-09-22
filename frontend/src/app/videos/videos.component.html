@@ -1,10 +1,12 @@
-<main class="mat-app-background light-theme inline"
+<main class="mat-app-background dark-theme inline"
   [ngClass]="{'dark-theme': (themeSelected | async) === 'Dark', 'light-theme': ( themeSelected | async) === 'Light'}">
   <section class="video"
     [ngClass]="{'dark-theme': (themeSelected | async) === 'Dark', 'light-theme': ( themeSelected | async) === 'Light'}">
     <video buffered controls autoplay [src]="src">
       <source [type]="type">
     </video>
+  </section>
+  <section class="song-name">
     <span>{{song}}</span>
   </section>
   <section class="list"
@@ -13,11 +15,11 @@
       <ng-container>
         <mat-list>
           <ng-container>
-            <div *ngIf="loaded.value === false" class="spinner">
-              <mat-spinner [mode]="'indeterminate'"></mat-spinner>
+            <div *ngIf="'{{(loading | async) !== true}}'" class="spinner">
+              <mat-spinner class="warn" [mode]="'indeterminate'"></mat-spinner>
             </div>
             <div class="mat-list-padding">
-              <div class="loaded" *ngIf="loaded">
+              <div class="loaded" *ngIf="'{{(loading | async) === false}}'">
                 <mat-list-item id="item" *ngFor="let video of videos">
                   <!-- <mat-icon aria-hidden="false" aria-label="Palette Icon" fontIcon="lyrics"></mat-icon> -->
                   <a target="_self" (click)="getVideoById(video)">{{ video }}</a>
