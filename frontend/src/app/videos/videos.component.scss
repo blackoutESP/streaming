@@ -1,12 +1,4 @@
-@import "../../custom-theme.scss";
-@include light-theme;
-@include colors;
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+// @import "../../custom-theme.scss";
 
 .material-symbols-outlined {
   font-variation-settings:
@@ -16,50 +8,17 @@
     'opsz' 24;
   font-size: 2em;
   line-height: 2em;
-  display: flex;
-  flex-direction: row;
+  display: grid;
   grid-area: icon;
 }
 
 .inline {
   display: grid;
-  grid-template-columns: 60% 40%;
-  grid-template-rows: 5% 95% 5%;
-  grid-template-areas: "icon title" "player videos";
-  // border: 1px dotted rgb(86, 95, 105);
+  grid-template-columns: 80% 20%;
+  grid-template-rows: 85% 5% 5%;
+  grid-template-areas: "player videos" "song-name videos" "build build";
   width: 100%;
   height: 100%;
-}
-
-.title {
-  width: 100%;
-  height: 100%;
-  height: 3em;
-  font-size: 1.2em;
-  line-height: 1.2em;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  grid-area: title;
-  margin: 0;
-}
-
-.divider {
-  width: 1em;
-  margin-left: 1em;
-  margin-right: 1em;
-  border: 0;
-  color: primary;
-}
-
-.palette {
-  height: 3em;
-  line-height: 3em;
-  font-size: 1.2em;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
 }
 
 .video {
@@ -80,7 +39,7 @@ video {
   padding: 2em;
   width: auto;
   height: auto;
-  color: #4c7684;
+  color: warn; // #4c7684;
   // border: 1px solid map-get($map: $dark-theme, $key: $warn);
 
 }
@@ -88,7 +47,7 @@ video {
 .mdc-circular-progress__indeterminate-container {
   display: inline-block;
   visibility: visible;
-  padding: 2em;
+  padding: 1em;
 }
 
 .list {
@@ -141,7 +100,7 @@ video {
   align-items: center;
   width: 100%;
   margin: auto;
-  padding: 2em;
+  padding: 1em;
 }
 
 .viewport {
@@ -173,10 +132,23 @@ video {
   background-color: #373a3b;
 }
 
+.song-name {
+  grid-area: song-name;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  text-overflow: ellipsis;
+  border: 1px solid red;
+  justify-items: flex-start;
+}
+
 .version {
   display: flex;
-  flex-direction: row;
-  position: absolute;
-  top: 97%;
-  left: 90%;
+  grid-area: build;
+  width: 100%;
+  border: 1px solid;
+  padding: .3em;
+  border: 1px solid red;
 }
