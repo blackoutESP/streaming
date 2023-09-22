@@ -5,7 +5,9 @@
     <video buffered controls autoplay [src]="src">
       <source [type]="type">
     </video>
-    <span class="song-name">{{song}}</span>
+  </section>
+  <section class="song-name">
+    <span>{{song}}</span>
   </section>
   <section class="list"
     [ngClass]="{'dark-theme': (themeSelected | async) === 'Dark', 'light-theme': ( themeSelected | async) === 'Light'}">

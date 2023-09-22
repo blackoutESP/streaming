@@ -1,22 +1,12 @@
 // @import "../../custom-theme.scss";
 
-.material-symbols-outlined {
-  font-variation-settings:
-    'FILL' 0,
-    'wght' 300,
-    'GRAD' 0,
-    'opsz' 24;
-  font-size: 2em;
-  line-height: 2em;
-  display: grid;
-  grid-area: icon;
-}
-
 .inline {
   display: grid;
-  grid-template-columns: 80% 20%;
-  grid-template-rows: 85% 5% 5%;
-  grid-template-areas: "player videos" "song-name videos" "build build";
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 85% 10% 5%;
+  grid-template-areas: "player videos"
+    "song-name videos"
+    "build build";
   width: 100%;
   height: 100%;
 }
@@ -24,13 +14,17 @@
 .video {
   display: grid;
   grid-area: player;
-  border: 1px solid;
+  width: 100%;
+  height: 100%;
 }
 
 video {
-  width: 100%;
-  max-height: 640px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 720px;
+  height: 560px;
+  margin: auto;
 }
 
 .spinner {
@@ -60,7 +54,6 @@ video {
   writing-mode: sideways-lr;
   direction: ltr;
   overflow-y: hidden;
-  border: 1px solid;
 }
 
 .list mat-list mat-list-item>a {
@@ -133,22 +126,24 @@ video {
 }
 
 .song-name {
+  display: grid;
   grid-area: song-name;
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  justify-content: flex-start;
-  width: 100%;
+  height: 2em;
+  line-height: 2em;
   text-overflow: ellipsis;
-  border: 1px solid red;
-  justify-items: flex-start;
+}
+
+.song-name>span {
+  margin-left: 1em;
 }
 
 .version {
-  display: flex;
   grid-area: build;
-  width: 100%;
-  border: 1px solid;
-  padding: .3em;
-  border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  height: 2em;
+  line-height: 2em;
+  padding-right: 1em;
+  font-style: italic;
 }
