@@ -1,6 +1,6 @@
 {
   "name": "front",
-  "version": "2.1",
+  "version": "2.1-2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

@@ -1,22 +1,23 @@
-import { Component, OnInit, OnDestroy, Output, Sanitizer, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, Sanitizer, Input, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { LoginService } from 'src/app/services/login.service';
 import { VideosService } from 'src/app/services/videos.service';
-import { OverlayContainer } from '@angular/cdk/overlay';
 import packageJSON from '../../../package.json';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Component({
-  selector: 'streaming',
+  selector: '<app-streaming (overlayTheme)="switchTheme(overlayTheme);"></app-streaming>',
   templateUrl: './videos.component.html',
-  styleUrls: ['./videos.component.scss']
+  styleUrls: ['./videos.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class StreamingComponent implements OnInit, OnDestroy {
 
-  private overlay: any;
-  @Input() public overlayTheme = new BehaviorSubject<string>('dark-theme');
-  @Output() themeSelected: BehaviorSubject<string> = new BehaviorSubject('Dark');
-  @Output() checked: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public overlay: any;
+  @Output() overlayTheme: BehaviorSubject<string> = new BehaviorSubject('light-theme');
+  @Input() themeSelected: BehaviorSubject<string> = new BehaviorSubject('Dark');
+  @Input() checked: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public title = 'Small Streaming Service';
   public version: string = packageJSON.version;
   public src: string = encodeURI(`http://0.0.0.0:3000/api/videos/`);
@@ -40,11 +41,18 @@ export class StreamingComponent implements OnInit, OnDestroy {
       this.mobile = false;
     }
     this.overlay = this.overlayContainer.getContainerElement();
-    this.router.navigate(['streaming'], { skipLocationChange: false });
+    this.activatedRoute.queryParams.subscribe((params: any) => {
+      const { query } = params;
+      const theme: string = query;
+      if (theme === 'light-theme') {
+        this.switchTheme({ checked: true });
+      } else {
+        this.switchTheme({ checked: false });
+      }
+    });
   }
 
   ngOnInit(): void {
-    console.log(this.loaded.value);
     this.feedVideoList();
   }
 
@@ -60,8 +68,12 @@ export class StreamingComponent implements OnInit, OnDestroy {
       if (this.videos.length > 0) {
 
       }
-      console.log(this.loaded.value);
+
     });
+  }
+
+  public log(info: any) {
+    console.log(info);
   }
 
   public getVideoById(id: string): any {
@@ -80,8 +92,7 @@ export class StreamingComponent implements OnInit, OnDestroy {
     }
   }
 
-  switchTheme(event: any): void {
-    console.log(event.checked);
+  public switchTheme(event: any): void {
     if (!event.checked) { // dark theme
       this.overlay.classList.remove('light-theme');
       this.overlay.classList.add('dark-theme');
