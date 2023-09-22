@@ -39,7 +39,11 @@ export class Container implements OnInit, OnDestroy {
       this.mobile = false;
     }
     this.overlay = this.overlayContainer.getContainerElement();
-    this.router.navigate(['streaming'], { skipLocationChange: false });
+    /*
+      Envio en los queryParams el tema a aplicar en el modulo cargado por lazy loading.
+      Buscar otra alternativa.
+    */
+    this.router.navigate(['streaming'], { skipLocationChange: false, queryParams: { query: encodeURI('dark-theme') } });
   }
 
   ngOnInit(): void {

@@ -41,7 +41,15 @@ export class StreamingComponent implements OnInit, OnDestroy {
       this.mobile = false;
     }
     this.overlay = this.overlayContainer.getContainerElement();
-    this.router.navigate(['streaming'], { skipLocationChange: false });
+    this.activatedRoute.queryParams.subscribe((params: any) => {
+      const { query } = params;
+      const theme: string = query;
+      if (theme === 'light-theme') {
+        this.switchTheme({ checked: true });
+      } else {
+        this.switchTheme({ checked: false });
+      }
+    });
   }
 
   ngOnInit(): void {
