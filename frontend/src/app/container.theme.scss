@@ -1,8 +1,8 @@
-// @import "../custom-theme.scss";
-// @include light-theme;
-// @include primary;
-// @include accent;
-// @include warn;
+@import "../custom-theme.scss";
+@include primary;
+@include accent;
+@include warn;
+@include light-theme;
 
 .inline-toolbar {
   display: grid;

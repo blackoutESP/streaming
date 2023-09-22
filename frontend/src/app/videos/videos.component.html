@@ -16,7 +16,7 @@
         <mat-list>
           <ng-container>
             <div *ngIf="'{{(loading | async) !== true}}'" class="spinner">
-              <mat-spinner class="warn" [mode]="'indeterminate'"></mat-spinner>
+              <mat-spinner [color]="'warn'" [mode]="'indeterminate'"></mat-spinner>
             </div>
             <div class="mat-list-padding">
               <div class="loaded" *ngIf="'{{(loading | async) === false}}'">

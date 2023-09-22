@@ -1,4 +1,8 @@
-// @import "../../custom-theme.scss";
+@import "../../custom-theme.scss";
+@include primary;
+@include accent;
+@include warn;
+@include light-theme;
 
 .inline {
   display: grid;

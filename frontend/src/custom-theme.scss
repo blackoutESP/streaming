@@ -13,12 +13,7 @@ $light-theme: mat.define-light-theme((color: (primary: mat.define-palette(mat.$i
       )));
 
 // Apply the dark theme by default
-@mixin dark-theme {
-  .dark-theme {
-    @include mat.all-component-themes($dark-theme);
-    @include mat.all-component-colors($dark-theme);
-  }
-}
+@include mat.all-component-themes($dark-theme);
 
 @mixin light-theme {
   .light-theme {
@@ -45,8 +40,8 @@ $light-theme: mat.define-light-theme((color: (primary: mat.define-palette(mat.$i
 }
 
 // // Apply the light theme only when the user prefers light themes.
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   // Use the `-color` mixins to only apply color styles without reapplying the same
   // typography and density styles.
-  @include mat.all-component-themes($dark-theme);
+  // @include light-theme;
 }
