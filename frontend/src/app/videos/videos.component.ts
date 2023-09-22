@@ -9,7 +9,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 @Component({
   selector: '<app-streaming (overlayTheme)="switchTheme(overlayTheme);"></app-streaming>',
   templateUrl: './videos.component.html',
-  styleUrls: ['./videos.component.scss'],
+  styleUrls: ['./videos.theme.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class StreamingComponent implements OnInit, OnDestroy {
