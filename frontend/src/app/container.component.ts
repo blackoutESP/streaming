@@ -39,7 +39,7 @@ export class Container implements OnInit, OnDestroy {
       this.mobile = false;
     }
     this.overlay = this.overlayContainer.getContainerElement();
-    this.router.navigate(['videos'], { skipLocationChange: false });
+    this.router.navigate(['videos/streaming'], { skipLocationChange: false });
   }
 
   ngOnInit(): void {

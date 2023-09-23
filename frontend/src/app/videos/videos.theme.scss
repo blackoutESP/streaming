@@ -4,150 +4,46 @@
 @include warn;
 @include light-theme;
 
-.inline {
+.inline-toolbar {
   display: grid;
-  grid-template-columns: 70% 30%;
-  grid-template-rows: 80% 5% 5%;
-  grid-template-areas: "player videos"
-    "song-name videos"
-    "build build";
-  width: 100%;
-  height: 100%;
-}
-
-.video {
-  display: grid;
-  grid-area: player;
-  width: 100%;
-  height: 100%;
-}
-
-video {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 720px;
-  height: 560px;
-  margin: auto;
-}
-
-.spinner {
-  display: inline-block;
-  visibility: visible;
-  padding: 2em;
-  width: auto;
-  height: auto;
-  color: warn; // #4c7684;
-  // border: 1px solid map-get($map: $dark-theme, $key: $warn);
-
-}
-
-.mdc-circular-progress__indeterminate-container {
-  display: inline-block;
-  visibility: visible;
-  padding: 1em;
-}
-
-.list {
-  display: grid;
-  grid-area: videos;
-  height: 100%;
-  width: 100%;
-  margin: auto;
-  padding-inline: 0;
-  writing-mode: sideways-lr;
-  direction: ltr;
-  overflow-y: hidden;
-}
-
-.list mat-list mat-list-item>a {
-  // margin: .5em;
-  // padding: .5em;
-  font-size: 1em;
-  line-height: 1em;
-  text-overflow: ellipsis;
-  padding-inline: .5em .5em;
-  writing-mode: horizontal-tb;
-  direction: rtl;
-  margin-inline: .5em .5em;
-  writing-mode: sideways-lr;
-  cursor: pointer;
-}
-
-.mat-mdc-list-item {
-  margin-bottom: .5em;
-  font-weight: 400;
-  color: #767b7d;
-}
-
-#item::after {
-  // BREAK LINE AFTER EACH LINK
-  content: "\a";
-  white-space: pre;
-}
-
-.mat-mdc-form-field+.mat-mdc-form-field {
-  margin-left: 8px;
-}
-
-.spinner {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: auto;
-  padding: 1em;
-}
-
-.viewport {
-  width: 100%;
-  margin: auto;
-  padding: 1em;
-  height: 720px;
-  min-height: 720px;
-  overflow-y: scroll;
-}
-
-.viewport::-webkit-scrollbar {
-  width: 8px;
-  background-color: transparent;
-}
-
-.viewport::-webkit-scrollbar-track {
-  // box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  // border-radius: 10px;
-  // background-color: mat-color($accent);
-  display: none;
-}
-
-.viewport::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #373a3b;
-}
-
-.song-name {
-  display: grid;
-  grid-area: song-name;
+  grid-template-rows: 100%;
+  grid-template-columns: 90% 10%;
+  grid-template-areas: "logo palette";
   height: 2em;
   line-height: 2em;
-  text-overflow: ellipsis;
 }
 
-.song-name>span {
-  margin-left: 1em;
-}
-
-.version {
-  grid-area: build;
+.title {
+  grid-area: logo;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  width: 100%;
   height: 2em;
   line-height: 2em;
-  padding-right: 1em;
-  font-style: italic;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+  height: 1.4em;
+  line-height: 1.4em;
+  margin-right: .5em;
+}
+
+.divider {
+  width: 0;
+  height: 1em;
+  margin: auto;
+  height: 1em;
+}
+
+.palette {
+  display: grid;
+  grid-area: palette;
+  justify-items: flex-end;
+  font-size: 1em;
+  line-height: 1em;
 }

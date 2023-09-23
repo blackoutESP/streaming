@@ -38,12 +38,16 @@ export class StreamingComponent {
 
   }
 
+  ngOnInit(): void {
+    this.feedVideoList();
+  }
+
   public feedVideoList(): void {
 
     this.videosService.getVideos().pipe().subscribe((response: any) => {
       response['data'].forEach((item: string) => this.videos.push(item));
       if (this.videos.length > 0) {
-
+        this.loading.next(false);
       }
     });
   }

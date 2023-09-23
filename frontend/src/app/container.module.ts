@@ -9,6 +9,7 @@ import { Container } from './container.component';
 import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { AngularMaterialModule } from './angular-material-ui.module';
+import { VideosModule } from './videos/videos.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AngularMaterialModule } from './angular-material-ui.module';
     RouterModule,
     RouterOutlet,
     ContainerRoutingModule,
+    VideosModule,
     OverlayModule,
     AngularMaterialModule
   ],

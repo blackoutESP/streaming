@@ -6,8 +6,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { StreamingModule } from './streaming/streaming.module';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [

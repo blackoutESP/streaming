@@ -4,8 +4,6 @@ import { StreamingComponent } from './streaming.component';
 import { AngularMaterialModule } from 'src/app/angular-material-ui.module';
 import { RouterOutlet } from '@angular/router';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -17,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     RouterOutlet,
     OverlayModule,
-    AngularMaterialModule
+    AngularMaterialModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
