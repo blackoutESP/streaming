@@ -2,7 +2,6 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { VideosComponent } from './videos.component';
 import { AngularMaterialModule } from 'src/app/angular-material-ui.module';
-import { BrowserModule } from '@angular/platform-browser';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { StreamingModule } from './streaming/streaming.module';
 import { CommonModule } from '@angular/common';
@@ -16,11 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     CommonModule,
-    BrowserModule,
     RouterOutlet,
     OverlayModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
     AngularMaterialModule,
     StreamingModule
   ],

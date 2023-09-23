@@ -9,7 +9,7 @@ import packageJSON from '../../../../package.json';
 @Component({
   selector: 'app-streaming',
   templateUrl: './streaming.component.html',
-  styleUrls: ['./streaming.component.css']
+  styleUrls: ['./streaming.theme.scss']
 })
 export class StreamingComponent {
 

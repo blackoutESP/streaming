@@ -7,7 +7,7 @@ import packageJSON from '../../../package.json';
 import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Component({
-  selector: 'streaming',
+  selector: 'videos',
   templateUrl: './videos.component.html',
   styleUrls: ['./videos.theme.scss'],
   encapsulation: ViewEncapsulation.None

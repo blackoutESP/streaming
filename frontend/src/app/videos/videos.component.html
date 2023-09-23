@@ -11,7 +11,7 @@
   </section>
   <section class="list"
     [ngClass]="{'dark-theme': (themeSelected | async) === 'Dark', 'light-theme': ( themeSelected | async) === 'Light'}">
-    <cdk-virtual-scroll-viewport class="viewport">
+    <cdk-virtual-scroll-viewport itemSize="10" class="viewport">
       <ng-container>
         <mat-list>
           <ng-container>
@@ -35,3 +35,4 @@
     [ngClass]="{'dark-theme': (themeSelected | async) === 'Dark', 'light-theme': ( themeSelected | async) === 'Light'}"
     class="version">Current build: {{ version }}</span>
 </main>
+<router-outlet></router-outlet>
