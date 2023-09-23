@@ -1,18 +1,17 @@
-import { Component, OnInit, OnDestroy, Output, Sanitizer, Input, ViewEncapsulation } from '@angular/core';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { Component, Output, Sanitizer } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { LoginService } from 'src/app/services/login.service';
 import { VideosService } from 'src/app/services/videos.service';
-import packageJSON from '../../../package.json';
-import { OverlayContainer } from '@angular/cdk/overlay';
+import packageJSON from '../../../../package.json';
 
 @Component({
-  selector: 'streaming',
-  templateUrl: './videos.component.html',
-  styleUrls: ['./videos.theme.scss'],
-  encapsulation: ViewEncapsulation.None
+  selector: 'app-streaming',
+  templateUrl: './streaming.component.html',
+  styleUrls: ['./streaming.component.css']
 })
-export class VideosComponent implements OnInit, OnDestroy {
+export class StreamingComponent {
 
   public overlay: any;
   @Output() overlayTheme: BehaviorSubject<string> = new BehaviorSubject('light-theme');
@@ -34,20 +33,8 @@ export class VideosComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private loginService: LoginService,
     private videosService: VideosService,
-    private sanitizer: Sanitizer) {
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|CriOS/i.test(navigator.userAgent)) {
-      this.mobile = true;
-    } else {
-      this.mobile = false;
-    }
-    this.overlay = this.overlayContainer.getContainerElement();
-  }
-
-  ngOnInit(): void {
-    this.feedVideoList();
-  }
-
-  ngOnDestroy(): void {
+    private sanitizer: Sanitizer
+  ) {
 
   }
 

@@ -7,8 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Container } from './container.component';
 import { CommonModule } from '@angular/common';
-import { AngularMaterialModule } from './angular-material-ui.module';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { AngularMaterialModule } from './angular-material-ui.module';
 
 @NgModule({
   declarations: [
@@ -22,11 +22,10 @@ import { OverlayModule } from '@angular/cdk/overlay';
     RouterModule,
     RouterOutlet,
     ContainerRoutingModule,
-    AngularMaterialModule,
-    OverlayModule
+    OverlayModule,
+    AngularMaterialModule
   ],
   providers: [],
-  bootstrap: [Container],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  bootstrap: [Container]
 })
 export class ContainerModule { }

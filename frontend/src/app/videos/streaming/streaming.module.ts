@@ -1,18 +1,18 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-
-import { VideosComponent } from './videos.component';
+import { CommonModule } from '@angular/common';
+import { StreamingComponent } from './streaming.component';
 import { AngularMaterialModule } from 'src/app/angular-material-ui.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { OverlayModule } from '@angular/cdk/overlay';
-import { StreamingModule } from './streaming/streaming.module';
-import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
+
+
 @NgModule({
   declarations: [
-    VideosComponent
+    StreamingComponent
   ],
   imports: [
     CommonModule,
@@ -21,10 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     OverlayModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AngularMaterialModule,
-    StreamingModule
+    AngularMaterialModule
   ],
-  providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class VideosModule { }
+export class StreamingModule { }
