@@ -15,9 +15,9 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 export class VideosComponent implements OnInit, OnDestroy {
 
   public overlay: any;
-  @Output() overlayTheme: BehaviorSubject<string> = new BehaviorSubject('light-theme');
-  @Output() themeSelected: BehaviorSubject<string> = new BehaviorSubject('Dark');
-  @Output() checked: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  @Input() overlayTheme: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
+  @Input() themeSelected: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
+  @Input() checked: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public loading: BehaviorSubject<boolean> = new BehaviorSubject(true);
   public title = 'Small Streaming Service';
   public version: string = packageJSON.version;
@@ -77,18 +77,22 @@ export class VideosComponent implements OnInit, OnDestroy {
     }
   }
 
+  public log(data: string): void {
+    console.log(data);
+  }
+
   public switchTheme(event: any): void {
     if (!event.checked) { // dark theme
       this.overlay.classList.remove('light-theme');
       this.overlay.classList.add('dark-theme');
       this.overlayTheme.next('dark-theme');
-      this.themeSelected.next('Dark');
+      this.themeSelected.next('dark-theme');
       this.checked.next(true);
     } else { // Light theme
       this.overlay.classList.remove('dark-theme');
       this.overlay.classList.add('light-theme');
       this.overlayTheme.next('light-theme');
-      this.themeSelected.next('Light');
+      this.themeSelected.next('light-theme');
       this.checked.next(false);
     }
   }

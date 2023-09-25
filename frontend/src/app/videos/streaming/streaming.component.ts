@@ -1,5 +1,5 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { Component, Output, Sanitizer } from '@angular/core';
+import { Component, Input, Output, Sanitizer } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { LoginService } from 'src/app/services/login.service';
@@ -7,16 +7,20 @@ import { VideosService } from 'src/app/services/videos.service';
 import packageJSON from '../../../../package.json';
 
 @Component({
-  selector: 'app-streaming',
+  selector: 'streaming',
   templateUrl: './streaming.component.html',
   styleUrls: ['./streaming.theme.scss']
 })
 export class StreamingComponent {
 
   public overlay: any;
-  @Output() overlayTheme: BehaviorSubject<string> = new BehaviorSubject('light-theme');
-  @Output() themeSelected: BehaviorSubject<string> = new BehaviorSubject('Dark');
-  @Output() checked: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  @Input() overlayTheme: BehaviorSubject<string> = new BehaviorSubject('');
+  @Input() themeSelected: BehaviorSubject<string> = new BehaviorSubject('');
+  @Input() set setThemeSelected(theme: string) {
+    console.log(theme);
+    this.themeSelected.next(theme);
+    this.overlayTheme.next(theme);
+  }
   public loading: BehaviorSubject<boolean> = new BehaviorSubject(true);
   public title = 'Small Streaming Service';
   public version: string = packageJSON.version;
@@ -40,6 +44,10 @@ export class StreamingComponent {
 
   ngOnInit(): void {
     this.feedVideoList();
+  }
+
+  public log(data: any): void {
+    console.log(data);
   }
 
   public feedVideoList(): void {
@@ -68,19 +76,11 @@ export class StreamingComponent {
     }
   }
 
-  public switchTheme(event: any): void {
-    if (!event.checked) { // dark theme
-      this.overlay.classList.remove('light-theme');
-      this.overlay.classList.add('dark-theme');
-      this.overlayTheme.next('dark-theme');
-      this.themeSelected.next('Dark');
-      this.checked.next(true);
-    } else { // Light theme
-      this.overlay.classList.remove('dark-theme');
-      this.overlay.classList.add('light-theme');
-      this.overlayTheme.next('light-theme');
-      this.themeSelected.next('Light');
-      this.checked.next(false);
-    }
+  public logThemeSelected(theme: string) {
+    console.log(theme);
+  }
+
+  public switchTheme(data: any): string {
+    return data;
   }
 }
