@@ -15,6 +15,12 @@ $light-theme: mat.define-light-theme((color: (primary: mat.define-palette(mat.$i
 // Apply the dark theme by default
 @include mat.all-component-themes($dark-theme);
 
+@mixin dark-theme {
+  .dark-theme {
+    @include mat.all-component-themes($dark-theme);
+  }
+}
+
 @mixin light-theme {
   .light-theme {
     @include mat.all-component-colors($light-theme);
