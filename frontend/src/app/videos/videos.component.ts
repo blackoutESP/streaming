@@ -14,19 +14,18 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 })
 export class VideosComponent implements OnInit, OnDestroy {
 
+  public title = 'Small Streaming Service';
   public overlay: any;
   @Input() overlayTheme: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
   @Input() themeSelected: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
   @Input() checked: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  public loading: BehaviorSubject<boolean> = new BehaviorSubject(true);
-  public title = 'Small Streaming Service';
-  public version: string = packageJSON.version;
-  public src: string = encodeURI(`http://0.0.0.0:3000/api/videos/`);
-  public song: string = '';
-  public videos: string[] = [];
-  public type: string = '';
   private token: string = '';
+  public loading: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  // public videos: string[] = [];
+  public song: string = '';
+  public src: string = encodeURI(`http://0.0.0.0:3000/api/videos/`);
   public mobile: boolean = false;
+  public version: string = packageJSON.version;
 
   constructor(
     private overlayContainer: OverlayContainer,
@@ -44,37 +43,20 @@ export class VideosComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.feedVideoList();
+    this.auth();
+
   }
 
   ngOnDestroy(): void {
 
   }
 
-  public feedVideoList(): void {
-
-    this.videosService.getVideos().pipe().subscribe((response: any) => {
-      response['data'].forEach((item: string) => this.videos.push(item));
-      if (this.videos.length > 0) {
-
-      }
+  private auth(): void {
+    this.loginService.login().pipe().subscribe((response: any) => {
+      const data = JSON.parse(JSON.stringify(response));
+      this.token = data.token;
+      sessionStorage.setItem('token', this.token);
     });
-  }
-
-  public getVideoById(id: string): any {
-    console.log(id);
-    this.song = id;
-    if (id) {
-      // this.url = this.sanitizer.sanitize(4, encodeURI(`http://0.0.0.0:3000/api/videos/${id}?authorization=Bearer ${this.token}`)) || '';
-      this.src = `http://0.0.0.0:3000/api/videos/${id}?authorization=Bearer ${this.token}`;
-      this.router.navigate(
-        [],
-        {
-          relativeTo: this.activatedRoute,
-          queryParams: { query: encodeURI(`/videos/${id}?authorization=Bearer ${this.token}`) },
-          queryParamsHandling: 'merge'
-        });
-    }
   }
 
   public log(data: string): void {

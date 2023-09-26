@@ -43,20 +43,11 @@ export class Container implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.auth();
-    // this.feedVideoList();
+
   }
 
   ngOnDestroy(): void {
 
-  }
-
-  private auth(): void {
-    this.loginService.login().pipe().subscribe((response: any) => {
-      const data = JSON.parse(JSON.stringify(response));
-      this.token = data.token;
-      sessionStorage.setItem('token', this.token);
-    });
   }
 
   switchTheme(event: any): void {

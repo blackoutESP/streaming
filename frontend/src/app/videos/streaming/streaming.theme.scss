@@ -2,7 +2,6 @@
 @include primary;
 @include accent;
 @include warn;
-@include dark-theme;
 @include light-theme;
 
 .inline {
@@ -98,7 +97,7 @@ video {
 .mat-mdc-list-item {
   padding: .5em;
   font-weight: 400;
-  color: #767b7d;
+  color: primary;
 }
 
 #item::after {
@@ -149,7 +148,7 @@ video {
   border-radius: 10px;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #373a3b;
+  background-color: accent;
 }
 
 .song-name {
