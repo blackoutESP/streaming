@@ -3,23 +3,23 @@
 	"autokill": true,
 	"terminals": [
 		{
-			"name": "Node.js terminal",
+			"name": "Streaming Backend",
 			"description": "",
 			"icon": "code",
-			"cwd": "~/src/streaming/back/",
-			"command": "yarn start",
-			"recycle": false,
+			"cwd": "~/src/streaming/src/",
+			"command": "yarn dev",
+			"recycle": true,
 			"open": true,
 			"focus": false,
 			"shellPath": "/bin/zsh"
 		},
 		{
-			"name": "Angular terminal",
+			"name": "Frontend",
 			"description": "",
 			"icon": "code",
-			"cwd": "~/src/streaming/front/",
-			"command": "ng serve",
-			"recycle": false,
+			"cwd": "~/src/streaming/frontend/",
+			"command": "yarn start",
+			"recycle": true,
 			"open": true,
 			"focus": true,
 			"shellPath": "/bin/zsh"
