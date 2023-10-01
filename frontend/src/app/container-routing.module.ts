@@ -9,12 +9,12 @@ const routes: Routes = [
   {
     path: 'videos', component: VideosComponent, children: [
       {
-        path: '', loadChildren: () => import('src/app/videos/streaming/streaming.module').then(m => m.StreamingModule)
+        path: 'streaming', component: StreamingComponent
       }
     ]
   },
   {
-    path: 'videos/streaming', component: StreamingComponent
+    path: '', loadChildren: () => import('src/app/videos/streaming/streaming.module').then(s => s.StreamingModule)
   }
 ];
 
