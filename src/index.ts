@@ -37,11 +37,12 @@ export const authMiddleware = async (request: Request, response: Response, next:
         jwt.verify(token, secret, (error: any, decoded: any) => {
             if (error) {
                 console.error(error);
-                logger.error({ error: 'Unauthorized access', status: 403, message: 'Forbidden access.' })
+                logger.error({ error: 'Unauthorized access', status: 403, message: 'Forbidden access.' });
+                return next(403);
             }
             console.log(decoded);
             logger.info({ error: 'Authorized access', status: 200, message: 'Authorized access.' });
-            next();
+            return next();
         });
     } else {
         return next();

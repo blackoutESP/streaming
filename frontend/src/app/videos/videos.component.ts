@@ -22,9 +22,6 @@ export class VideosComponent implements OnInit, OnDestroy {
   private token: string = '';
   public loading: BehaviorSubject<boolean> = new BehaviorSubject(true);
   // public videos: string[] = [];
-  public type: string = '';
-  public song: string = '';
-  public src: string = encodeURI(`http://0.0.0.0:3000/api/videos/`);
   public mobile: boolean = false;
   public version: string = packageJSON.version;
 

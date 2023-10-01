@@ -20,7 +20,7 @@ export class StreamingComponent {
     console.log(theme);
     this.theme.next(theme);
   }
-
+  @Input() themeSelected: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
   public checked: BehaviorSubject<boolean> = new BehaviorSubject(true);
   public loading: BehaviorSubject<boolean> = new BehaviorSubject(true);
   public title = 'Small Streaming Service';
@@ -87,13 +87,13 @@ export class StreamingComponent {
       this.overlay.classList.remove('light-theme');
       this.overlay.classList.add('dark-theme');
       this.theme.next('dark-theme');
-      // this.themeSelected.next('dark-theme');
+      this.themeSelected.next('dark-theme');
       this.checked.next(true);
     } else { // Light theme
       this.overlay.classList.remove('dark-theme');
       this.overlay.classList.add('light-theme');
       this.theme.next('light-theme');
-      // this.themeSelected.next('light-theme');
+      this.themeSelected.next('light-theme');
       this.checked.next(false);
     }
   }

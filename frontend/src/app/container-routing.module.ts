@@ -7,12 +7,19 @@ import { StreamingComponent } from './videos/streaming/streaming.component';
 const routes: Routes = [
   { path: '', component: Container },
   {
-    path: 'videos', component: VideosComponent, loadChildren: () => import('./videos/streaming/streaming.module').then(m => m.StreamingModule) }
-  // { path: 'videos/:id', loadChildren: () => import('./videos/videos.module').then(m => m.VideosModule) }
+    path: 'videos', component: VideosComponent, children: [
+      {
+        path: '', loadChildren: () => import('src/app/videos/streaming/streaming.module').then(m => m.StreamingModule)
+      }
+    ]
+  },
+  {
+    path: 'videos/streaming', component: StreamingComponent
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class ContainerRoutingModule { }
