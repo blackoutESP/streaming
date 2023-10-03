@@ -18,13 +18,10 @@ export class VideosComponent implements OnInit, OnDestroy {
 
   public theme: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public isDarkTheme: Observable<boolean> = new Observable();
-
-  public overlayTheme: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
-  public themeSelected: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
+  public themeSelected: BehaviorSubject<string> = new BehaviorSubject('Dark');
   public checked: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private token: string = '';
   public loading: BehaviorSubject<boolean> = new BehaviorSubject(true);
-  // public videos: string[] = [];
   public mobile: boolean = false;
   public version: string = packageJSON.version;
 
@@ -43,7 +40,6 @@ export class VideosComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.auth();
     this.isDarkTheme = this.themeService.isDarkTheme;
-    this.isDarkTheme.subscribe(theme => console.log(theme));
   }
 
   ngOnDestroy(): void {
@@ -60,30 +56,34 @@ export class VideosComponent implements OnInit, OnDestroy {
 
   public toggleTheme(checked: boolean) {
     if (checked) {
-      this.themeSelected.next('light-theme');
+      this.overlay.classList.remove('dark-theme');
+      this.overlay.classList.add('light-theme');
+      this.themeSelected.next('Light');
       this.checked.next(false);
     } else {
-      this.themeSelected.next('dark-theme');
+      this.overlay.classList.remove('light-theme');
+      this.overlay.classList.add('dark-theme');
+      this.themeSelected.next('Dark');
       this.checked.next(true);
     }
     this.themeService.toggleTheme(checked);
   }
 
-  public switchTheme(event: any): void {
-    if (!event.checked) { // dark theme
-      this.overlay.classList.remove('light-theme');
-      this.overlay.classList.add('dark-theme');
-      this.overlayTheme.next('dark-theme');
-      this.themeSelected.next('dark-theme');
-      this.checked.next(true);
-      // this.toggleTheme(this.checked.value);
-    } else { // Light theme
-      this.overlay.classList.remove('dark-theme');
-      this.overlay.classList.add('light-theme');
-      this.overlayTheme.next('light-theme');
-      this.themeSelected.next('light-theme');
-      this.checked.next(false);
-      // this.toggleTheme(this.checked.value);
-    }
-  }
+  // public switchTheme(event: any): void {
+  //   if (!event.checked) { // dark theme
+  //     this.overlay.classList.remove('light-theme');
+  //     this.overlay.classList.add('dark-theme');
+  //     this.overlayTheme.next('dark-theme');
+  //     this.themeSelected.next('dark-theme');
+  //     this.checked.next(true);
+  //     // this.toggleTheme(this.checked.value);
+  //   } else { // Light theme
+  //     this.overlay.classList.remove('dark-theme');
+  //     this.overlay.classList.add('light-theme');
+  //     this.overlayTheme.next('light-theme');
+  //     this.themeSelected.next('light-theme');
+  //     this.checked.next(false);
+  //     // this.toggleTheme(this.checked.value);
+  //   }
+  // }
 }

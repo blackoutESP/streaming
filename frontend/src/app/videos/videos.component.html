@@ -9,8 +9,7 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item>
         <mat-icon aria-hidden="false" aria-label="Palette Icon" fontIcon="palette"></mat-icon>
-        <mat-slide-toggle [hideIcon]="true" [checked]="isDarkTheme | async" (change)="toggleTheme($event.checked)"
-          (toggleChange)="'{{themeSelected | async}}'">
+        <mat-slide-toggle [hideIcon]="true" [checked]="isDarkTheme | async" (change)="toggleTheme($event.checked)">
           {{ themeSelected | async }}
         </mat-slide-toggle>
       </button>
