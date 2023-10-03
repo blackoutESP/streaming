@@ -1,0 +1,33 @@
+<main class="mat-app-background inline">
+  <div class="video">
+    <video buffered controls autoplay [src]="src">
+      <source [type]="type">
+    </video>
+  </div>
+  <div class="videos-list">
+    <cdk-virtual-scroll-viewport itemSize="1" class="viewport">
+      <ng-container>
+        <mat-list>
+          <ng-container>
+            <div *ngIf="loading.value" class="spinner">
+              <mat-spinner [color]="'warn'" [mode]="'indeterminate'"></mat-spinner>
+            </div>
+            <div class="loaded" *ngIf="!loading.value">
+              <mat-list-item id="item" *ngFor="let video of videos">
+                <mat-icon aria-hidden="false" aria-label="Palette Icon" fontIcon="lyrics"></mat-icon>
+                <a target="_self" (click)="getVideoById(video)">{{ video }}</a>
+              </mat-list-item>
+            </div>
+          </ng-container>
+        </mat-list>
+      </ng-container>
+    </cdk-virtual-scroll-viewport>
+  </div>
+  <div class="song-name">
+    <span>{{song}}</span>
+  </div>
+  <span
+    class="version">Current build: {{ version }}</span>
+</main>
+<router-outlet></router-outlet>
+
