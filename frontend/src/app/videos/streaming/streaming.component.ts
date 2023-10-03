@@ -1,5 +1,5 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { Component, Sanitizer, SecurityContext } from '@angular/core';
+import { Component, Input, Sanitizer, SecurityContext } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { VideoService } from 'src/app/services/video.service';
