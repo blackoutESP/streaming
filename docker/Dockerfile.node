@@ -1,0 +1,15 @@
+FROM node:14-alpine
+RUN apk add iputils
+WORKDIR /usr/src/app
+COPY ../src/package.json /usr/src/app
+RUN npm install -g pm2 glob rimraf @nestjs/cli
+RUN cd /usr/src/app && npm install
+COPY ./src .
+COPY --chown=root:root ./ecosystem.config.js /usr/src/app/ecosystem.config.js
+RUN mkdir -p /usr/src/app/src/logs
+RUN mkdir -p /usr/src/app/src/assets
+RUN mkdir /root/.pm2
+RUN mkdir -p /var/log/pm2/
+WORKDIR /usr/src/app
+EXPOSE 3000
+CMD ["pm2-runtime", "ecosystem.config.js"]

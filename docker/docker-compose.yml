@@ -1,0 +1,25 @@
+version: "3"
+services:
+  cloudlite-aws-node:
+    build:
+      context: .
+      dockerfile: 'Dockerfile.node'
+    container_name: cloudlite-aws-node
+    image: cloudlite-aws-node
+    expose:
+      - 3000
+    ports:
+      - "3000:3000"
+    restart: always
+    entrypoint: ["pm2-runtime", "ecosystem.config.js"]
+  cloudlite-aws-angular:
+    build:
+      context: .
+      dockerfile: 'Dockerfile.angularcli'
+    container_name: cloudlite-aws-angular
+    image: cloudlite-aws-angular
+    expose:
+      - 80
+    ports:
+      - "80:80"
+    restart: always

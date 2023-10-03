@@ -1,0 +1,16 @@
+FROM node:14.15.3-alpine as angular-cli
+RUN mkdir /app
+WORKDIR /app
+COPY ../frontend/package.json /app
+COPY ../frontend /app/
+WORKDIR /app
+RUN npm install @angular/cli && npm install && npm run build
+
+FROM nginx:latest as nginx-build
+#RUN chmod 1777 /tmp
+#RUN apt update -y && apt install -y apt-utils nodejs npm lsof procps iputils-ping
+RUN mkdir -p /usr/share/nginx/smallstreamingservice
+COPY --from=angular-cli /app/dist/ /usr/share/nginx/smallstreamingservice/
+RUN mkdir /etc/nginx/logs && touch /etc/nginx/logs/error.log
+COPY --chown=root:root ./nginx.conf /etc/nginx/nginx.conf
+EXPOSE 80
