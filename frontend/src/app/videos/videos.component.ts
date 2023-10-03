@@ -17,7 +17,7 @@ export class VideosComponent implements OnInit, OnDestroy {
   public overlay: any;
 
   public theme: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  public isDarkTheme: Observable<boolean> = this.themeService.isDarkTheme;
+  public isDarkTheme: Observable<boolean> = new Observable();
 
   public overlayTheme: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
   public themeSelected: BehaviorSubject<string> = new BehaviorSubject('dark-theme');
@@ -42,7 +42,7 @@ export class VideosComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.auth();
-    // this.theme.subscribe(theme => console.log(theme));
+    this.isDarkTheme = this.themeService.isDarkTheme;
     this.isDarkTheme.subscribe(theme => console.log(theme));
   }
 
@@ -59,6 +59,13 @@ export class VideosComponent implements OnInit, OnDestroy {
   }
 
   public toggleTheme(checked: boolean) {
+    if (checked) {
+      this.themeSelected.next('light-theme');
+      this.checked.next(false);
+    } else {
+      this.themeSelected.next('dark-theme');
+      this.checked.next(true);
+    }
     this.themeService.toggleTheme(checked);
   }
 

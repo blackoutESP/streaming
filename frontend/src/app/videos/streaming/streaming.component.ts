@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { VideoService } from 'src/app/services/video.service';
 import packageJSON from '../../../../package.json';
+import { Observable } from 'rxjs/internal/Observable';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'streaming',
@@ -13,6 +15,8 @@ import packageJSON from '../../../../package.json';
 export class StreamingComponent {
 
   public overlay: any;
+  public theme: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public isDarkTheme: Observable<boolean> = new Observable();
   public loading: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public title = 'Small Streaming Service';
   public version: string = packageJSON.version;
@@ -28,12 +32,15 @@ export class StreamingComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private videoService: VideoService,
+    private themeService: ThemeService,
     private sanitizer: Sanitizer
   ) {
 
   }
 
   ngOnInit(): void {
+    this.isDarkTheme = this.themeService.isDarkTheme;
+    this.isDarkTheme.subscribe(theme => console.log(theme));
     this.feedVideoList();
   }
 

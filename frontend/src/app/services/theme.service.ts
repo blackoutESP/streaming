@@ -10,6 +10,7 @@ export class ThemeService {
   isDarkTheme = this.theme.asObservable();
 
   public toggleTheme(theme: boolean): void {
+    console.log(theme);
     this.theme.next(theme);
   }
 }

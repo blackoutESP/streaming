@@ -1,4 +1,4 @@
-<main class="mat-app-background inline">
+<main class="mat-app-background inline" [ngClass]="{'dark-theme': (isDarkTheme | async) === false, 'light-theme': ( isDarkTheme | async) === true}">
   <div class="video">
     <video buffered controls autoplay [src]="src">
       <source [type]="type">
