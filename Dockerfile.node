@@ -1,7 +1,7 @@
 FROM node:14-alpine
 RUN apk add iputils
 WORKDIR /usr/src/app
-COPY ../src/package.json /usr/src/app
+COPY ./src/package.json /usr/src/app
 RUN npm install -g pm2 glob rimraf @nestjs/cli
 RUN cd /usr/src/app && npm install
 COPY ./src .

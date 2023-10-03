@@ -1,8 +1,8 @@
 FROM node:14.15.3-alpine as angular-cli
 RUN mkdir /app
 WORKDIR /app
-COPY ../frontend/package.json /app
-COPY ../frontend /app/
+COPY ./frontend/package.json /app
+COPY ./frontend /app/
 WORKDIR /app
 RUN npm install @angular/cli && npm install && npm run build
 
