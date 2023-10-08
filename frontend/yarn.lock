@@ -18,9 +18,9 @@
     "@angular-devkit/core" "16.2.2"
     rxjs "7.8.1"
 
-"@angular-devkit/build-angular@^16.2.0":
+"@angular-devkit/build-angular@^16.2.2":
   version "16.2.2"
-  resolved "https://registry.npmjs.org/@angular-devkit/build-angular/-/build-angular-16.2.2.tgz"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/build-angular/-/build-angular-16.2.2.tgz#5a88d701abed34c49121aeb9445883c65b588364"
   integrity sha512-j2lni4mN6NaMLT85sJUPSz/pNuaTCAYG3EYUeuMRNkC5keH/f4W0Tiuq6DxY4OLEF1JnEnfkp+k0Z84mEti/xA==
   dependencies:
     "@ampproject/remapping" "2.2.1"
